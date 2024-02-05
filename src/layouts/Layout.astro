@@ -1,0 +1,32 @@
+---
+import AppFooter from "../components/AppFooter.astro";
+import AppHeader from "../components/AppHeader.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content="Template built with tailwindcss using Tailus blocks v2" />
+        <title>Tailus astro theme</title>
+       
+    </head>
+    <body>
+      <div class="relative h-full w-full bg-neutral-900"><div class="absolute inset-0 bg-fuchsia-400 bg-[size:20px_20px] opacity-20 blur-[100px]"></div></div>        <AppHeader />
+        <slot />
+        <AppFooter />
+    </body>
+</html>
+<style>
+    html {
+        scroll-behavior: smooth;
+        color-scheme: light dark;
+    }
+
+    body {
+        margin: 0;
+    }
+</style>
