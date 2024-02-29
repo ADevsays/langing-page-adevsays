@@ -37,7 +37,7 @@ onMounted(()=>{
 </script>
 
 <template>
-    <div class="w-full py-16 md:py-20 box-border px-16 font-bold text-3xl md:text-5xl justify-center mt-3 flex gap-2 md:gap-6 border rounded-lg lg:max-w-[800px] lg:my-12">
+    <div class="w-full animate-blurred-fade-in py-16 md:py-20 box-border px-16 font-bold text-3xl md:text-5xl justify-center mt-3 flex gap-2 md:gap-6 border rounded-lg lg:max-w-[800px] lg:my-12">
         <ItemCountDown :time="time.days" label="Días"/>
         <span aria-hidden="true">:</span>
         <ItemCountDown :time="time.hours" label="Horas"/>
