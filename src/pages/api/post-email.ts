@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({request})=>{
         }
 
         //@ts-ignore
-        sheets.spreadsheets.values.append({
+        await sheets.spreadsheets.values.append({
             spreadsheetId: '1IWTQ18Hai6cV-dsRbtFJiT0XFgKIVLR42H1dpmZVaPs',
             range: 'Hoja 1',
             valueInputOption: 'USER_ENTERED', 
