@@ -1,0 +1,17 @@
+---
+import HeroAdvisory from '../components/Advisory_Page/HeroAdvisory.astro';
+import InfoAdvisory from '../components/Advisory_Page/InfoAdvisory.astro';
+import FooterAdvisory from '../components/Advisory_Page/FooterAdvisory.astro';
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+    <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-10">
+        <div class="blur-[106px] h-56 bg-gradient-to-br from-yellow-300 to-purple-400 dark:from-yellow-600 dark:to-indigo-700"></div>
+        <div class="blur-[106px] h-32 bg-gradient-to-r from-yellow-300 to-sky-300 dark:from-yellow-600 dark:to-indigo-600"></div>
+    </div>
+	<main class="w-full flex flex-wrap min-h-screen bg-gradient-to-b from-[#121212] via-[#121212] to-black">
+		<HeroAdvisory/>
+        <InfoAdvisory/>
+        <FooterAdvisory/>
+	</main>
+</Layout>

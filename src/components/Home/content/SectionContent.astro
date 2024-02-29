@@ -1,0 +1,46 @@
+---
+import ContentCard from "./ContentCard.vue";
+
+const lastVideos = [
+    {
+        img: '/resources/thumbnails/TiktokVideo.webp',
+        title: '➡️ Desarrollador analiza el Algoritmo de Tiktok (Es peor de lo que crees)',
+        description: 'Tiktok ha causado revuelo desde su salida, y no es para menos...',
+        link: "https://www.youtube.com/watch?v=DlHllsBr-fQ&t=381s"
+    },
+    {
+        img: '/resources/thumbnails/ProgrammerMundial.webp',
+        title:  'Cómo ser un Programador del Top 1% Mundial',
+        description: 'Descubre hábitos y pequeños consejos que te pueden hacer mejor...',
+        link: "https://www.youtube.com/watch?v=LBgjVHYzr-Y&t=278s"
+    },
+    {
+        img: '/resources/thumbnails/AppleVideo.webp',
+        title: 'Los Desarrolladores de apps ODIAN Apple 💀',
+        description: 'Apple no es del agrado de mucha gente, pero los desarrolladores...',
+        link: "https://www.youtube.com/watch?v=-yMOSzdU-l0&t=168s"
+    },
+    {
+        img: '/resources/thumbnails/Games13Video.webp',
+        title: '🎮 Estos Juegos NO DEBERÍAN EXISTIR 🙀',
+        description: 'Impresionantes juegos que pesan solo 13kb hechos con JS...',
+        link: "https://www.youtube.com/watch?v=7O2G-4jGgtk"
+    }
+];
+
+---
+<section class="bg-gradient-to-b from-gray-900 via-[#121212] to-[#121212] m-0 px-6 lg:px-[9rem] mb-16 w-full">
+    <h3 class="font-semibold text-lg  mt-12">Contenido</h3>
+    <div class="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 place-content-center gap-8 my-8">
+        {
+            lastVideos.map(({img, title, description, link})=>(
+                <ContentCard 
+                    link={link}
+                    img={img} 
+                    title={title} 
+                    description={description} 
+                    client:load/>
+            ))
+        }
+    </div>
+</section>

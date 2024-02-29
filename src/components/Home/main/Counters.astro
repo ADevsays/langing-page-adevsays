@@ -1,0 +1,31 @@
+---
+import AnimateCounter from './AnimateCounter.vue';
+
+const counters = [
+    {
+        count: 12616,
+        socialMedia:"Instagram"
+    },
+    {
+        count: 7348,
+        socialMedia:"Tiktok"
+    },
+    {
+        count: 1352,
+        socialMedia:"YouTube"
+    },
+];
+
+---
+<section class="px-6 lg:px-[9rem] bg-gradient-to-b from-[#121212] to-gray-900 w-full mt-16 lg:mt-24">
+    <div class="mb-12 grid grid-cols-1 md:grid-cols-3 gap-6 place-content-center">
+        {
+            counters.map((counter)=>(
+                <AnimateCounter 
+                    maxCount={counter.count} 
+                    socialMedia={counter.socialMedia} 
+                    client:load/>
+            ))
+        }
+    </div>    
+</section>

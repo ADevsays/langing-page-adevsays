@@ -1,0 +1,39 @@
+---
+import Instagram from "@icons/Instagram.astro";
+import Tiktok from "@icons/Tiktok.astro";
+import Youtube from "@icons/Youtube.astro";
+import GitHub from "@icons/GitHub.astro";
+
+const socialMedia = [
+    {
+        link: "https://www.instagram.com/a_dev_says/",
+        Icon: Instagram,
+    },
+    {
+        link: "https://www.tiktok.com/@adevsays",
+        Icon: Tiktok,
+    },
+    {
+        link: "https://www.youtube.com/@aDevSays569",
+        Icon: Youtube,
+    },
+    {
+        link: "https://github.com/ADevsays",
+        Icon: GitHub,
+    },
+];
+---
+
+<nav class="mt-8">
+    <ul class="flex gap-3">
+        {
+            socialMedia.map(({link, Icon}) => (
+                <li>
+                    <a href={link} rel="noreferrer" target="_blank" class="hover:scale-105 cursor-pointer hover:text-gray-500 rounded-full bg-yellow-300 text-gray-700 flex justify-center items-center relative p-1 top-0 left-0">
+                        <Icon/>
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>

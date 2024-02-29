@@ -1,0 +1,7 @@
+---
+const {label, link} = Astro.props;
+---
+<a href={link} rel="noopener" class="hover:text-gray-500 text-base 700 gap-2 transition dark:hover:text-sky-600 md:px-4 flex">
+   {label}
+    <span class="font-semibold flex rounded-full bg-primary/20 px-1.5 py-0.5 text-xs tracking-wider text-purple-700 dark:bg-white/10 dark:text-orange-300">Nuevo</span>
+</a>

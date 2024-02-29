@@ -1,12 +1,10 @@
----
-import Container from "./Container.astro"
----
-<div class="relative h-screen" id="home">
+
+<div class="relative h-screen">
     <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
         <div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
         <div class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
     </div>
-    <Container>
+    <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
         <div class="relative pt-36 ml-auto">
             <div class="lg:w-2/3 text-center mx-auto">
                 <h1 class="dark:text-white text-black font-bold xl:leading-[6rem] text-5xl md:text-6xl xl:text-7xl">El mejor descargador para vídeos de<span class="text-primary text-red-600"> Youtube</span></h1>
@@ -16,5 +14,5 @@ import Container from "./Container.astro"
                 </div>
             </div>           
         </div>
-    </Container>
-</div>
+    </div>
+</div> 

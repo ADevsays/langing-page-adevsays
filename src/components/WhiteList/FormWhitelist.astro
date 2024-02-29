@@ -1,0 +1,87 @@
+<script>
+    const modal = document.querySelector('#formModal');
+    const form = document.querySelector('#form');
+    const input = document.querySelector("#email-input") as HTMLInputElement;
+    let emailValue = '';
+    const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Muchas gracias por <span class="text-white">registrate con antelación</span>, espera noticias pronto!</h3>`;
+    const componentError = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Ups! <span class="text-blue-500">Parece que ya estás registrado.</span>
+        <br>
+        ¡Espera noticias pronto!</h3>`;
+
+    const close = ()=>{
+        modal?.classList.add("hidden");       
+        modal?.classList.remove("flex");  
+    }
+
+    const closeModal =(e?:Event)=>{
+        if(!e) return;
+        if(e.target === form || !e.target) return;
+        if(form?.contains(e.target as Node)) return;
+        close();      
+    }
+
+    if(modal){
+        modal?.addEventListener("click", closeModal);
+        window.addEventListener("keydown", (e)=>{
+            const key = e.key;
+            if(key === "Escape"){
+                closeModal(e);
+            }
+        })
+    }
+
+    const sendEmail= async()=>{
+        if(!form) return;
+        const res = await fetch("/api/post-email", {
+            method:'POST',
+            body:JSON.stringify({email:emailValue}),
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        const response = await res.json();
+        console.log(response);
+        if(response.success){
+            form.innerHTML = componentSuccess;
+            setTimeout(() => {
+                close();  
+            }, 3000);
+        }else{
+            form.innerHTML = componentError;
+            setTimeout(() => {
+                close();  
+            }, 3000);
+        }
+    }
+
+    form?.addEventListener("submit", (e:Event)=>{
+        e.preventDefault();
+        sendEmail();
+        emailValue = '';
+        input.value = '';
+    });
+
+    input?.addEventListener("change", (e:Event)=>{
+        const inputTarget = e.target;
+        if(!inputTarget ||  !(inputTarget instanceof HTMLInputElement)) return;
+        const value = inputTarget.value;
+        emailValue += value;
+    })
+
+</script>
+
+<div id="formModal" class="hidden fixed inset-0 z-[9999] size-full bg-black bg-opacity-90  justify-center items-center">
+    <form id="form" class="bg-gradient-to-br pb-12 flex items-center w-[90%] flex-col p-6 rounded-xl gap-4 md:max-w-[600px]">  
+        <h3 class="my-6 w-full font-bold text-gray-300 text-xl text-center">¡Comparte tu correo para inscribirte a mi <span class="text-white">News Letter </span> y recibir beneficios exclusivos!</h3>
+        <label for="simple-search" class="sr-only">Search</label>
+        <div class="relative w-full">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+            </div>
+            <input type="email" id="email-input" name="email" class="bg-gray-50 py-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ejemplo@gmail.com" required />
+        </div>
+        <button type="submit" class="p-3 px-8 ms-2 mt-6 text-sm font-semibold bg-blue-700 rounded-lg  hover:bg-blue-800 dark:bg-blue-700 dark:hover:bg-blue-600 text-white w-full">
+            ¡INSCRIBIRSE!
+        </button>
+    </form>
+</div>

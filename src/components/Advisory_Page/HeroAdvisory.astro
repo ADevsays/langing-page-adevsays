@@ -1,0 +1,71 @@
+---
+import ContainerMain from '../ContainerMain.astro';
+import ButtonAdvisory from './ButtonAdvisory.astro';
+---
+<ContainerMain className="">
+    <div class="[background:radial-gradient(125%_125%_at_50%_10%,#030712_58%,#CC0E0E_120%)]  flex flex-col xl:flex-row gap-20 h-auto relative p-4 pb-20 pt-8 lg:top-0 lg:py-20 lg:px-12 top-[-50px] rounded-xl">
+        <aside class="text-center xl:text-left w-fit">
+            <h1 class="font-bold text-2xl md:text-4xl lg:pt-0 py-8 text-pretty">
+                Avanza sin <span class="text-yellow-400">límites</span>, resuelve tus dudas junto a un <span class="text-yellow-400">profesional</span>
+                ahora. 
+            </h1>
+            <p class="text-gray-300 text-base text-pretty lg:text-lg py-4 w-fit">
+                Agenda una asesoría conmigo para resolver tus inquietudes y darte soluciones.
+            </p>
+         <ButtonAdvisory/>
+        </aside>
+        <aside class="flex justify-center items-center relative w-full draw-border animate-slide-in-bottom">
+            <img 
+                id="img"
+                src="/resources/advisory/Character Advisory.webp"
+                class="h-full w-full rounded-lg shadow-sm object-cover shadow-yellow-400" 
+                alt="Imagen del personaje de Adevsays pero con estilo pixelart">
+        </aside>
+    </div>
+</ContainerMain>
+
+<style>
+      #img {
+        transition: box-shadow 0.3s ease;
+    }
+    .draw-border::before,
+    .draw-border::after {
+        border: 0 solid transparent;
+        border-radius: 7px;
+        box-sizing: border-box;
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .draw-border::before {
+        border-bottom-width: 4px;
+        border-left-width: 4px;
+    }
+    .draw-border::after {
+        border-top-width: 4px;
+        border-right-width: 4px;
+    }
+    .draw-border:hover {
+        color: #ffe593;
+    }
+    .draw-border:hover::before,
+    .draw-border:hover::after {
+        border-color: #fde047;
+        transition:
+            border-color 0s,
+            width 0.25s,
+            height 0.25s;
+        width: 100%;
+        height: 100%;
+    }
+    .draw-border:hover::before {
+        transition-delay: 0s, 0s, 0.25s;
+    }
+    .draw-border:hover::after {
+        transition-delay: 0s, 0.25s, 0s;
+    }
+</style>

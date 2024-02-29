@@ -1,0 +1,60 @@
+---
+import ContainerMain from '../ContainerMain.astro';
+import CountDown from './CountDown.vue';
+import FormWhitelist from './FormWhitelist.astro';
+---
+
+<script>
+    const btn = document.querySelector("#openModal");
+    const modal = document.querySelector('#formModal');
+    const openModal = ()=>{        
+        modal?.classList.remove("hidden");        
+        modal?.classList.add("flex");        
+    }
+ 
+    btn?.addEventListener('click', openModal);
+</script>
+
+
+<ContainerMain>
+    <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20 -z-10">
+        <div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
+        <div class="blur-[106px] h-48 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
+    </div>
+    <FormWhitelist/>
+    <div class="flex-col text-center flex justify-center items-center w-full gap-8">
+        <h1 class="font-semibold text-4xl uppercase">
+            <span class="m-0 p-0 w-fit bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
+                ¡Asesorías
+            </span>
+            por Adevsays 
+            <span class="bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
+                pronto!
+            </span>
+        </h1>
+        <h2 class="font-semibold text-gray-300 text-xl">Reserva un cupo ahora mismo para obtener <span class="text-white font-bold">beneficios</span> espectaculares</h2>
+        <p class="text-gray-400">¡Solo <span class="font-bold text-yellow-400">50 plazas</span> disponibles! No te quedes sin la tuya. 👇</p>
+        <CountDown client:load/>
+        <button 
+            id="openModal"
+            class="text-white pointer transition hover:scale-105 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-br font-medium rounded-xl text-base px-6 py-3 text-center mt-4 md:mt-0">
+            Apuntarse ahora
+        </button>
+
+        <p class="mt-20 text-gray-300">
+            <span class="font-bold text-white">¡Regístrate</span>
+             con antelación para ser de los primeros en tener acceso a la news letter! 
+             <br>
+             <br>
+            ¡Cada semana las news son 
+            <span class="font-bold text-white">eliminadas</span>
+             eliminadas! Así que entre más tardes, más información valiosa te perderás.
+            Además de que registrándote ahora, tendrás
+            <span class="font-bold text-white">un cupón</span>
+            para redimir cuando quieras que te dará un
+            <span class="font-bold text-white">descuento </span>en una
+            de mis asesorías. 🙀
+        </p>
+
+    </div>
+</ContainerMain>

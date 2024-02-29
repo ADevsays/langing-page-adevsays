@@ -1,0 +1,63 @@
+<aside class="flex w-full lg:min-w-[400px] animate-slide-in-bottom animate-duration-500 justify-center items-center lg:mt-3 mt-12 draw-border rounded-lg">
+    <img 
+        id="img" 
+        class="object-cover aspect-video rounded-lg border w-full h-full" 
+        src="/resources/img_landing.webp" 
+        alt="Imagen de Adevsays el mejor creador de contenido de programación en español"/>
+</aside>
+
+<style>
+
+    #img {
+        box-shadow: 1px 1px 30px -17px rgba(255, 241, 138, 0.94);
+        transition: box-shadow 0.3s ease;
+    }
+    .draw-border {
+        box-shadow: inset 0 0 0 4px #58afd1;
+        color: #58afd1;
+        transition: color 0.25s 0.0833333333s;
+        position: relative;
+    }
+    .draw-border::before,
+    .draw-border::after {
+        border: 0 solid transparent;
+        border-radius: 7px;
+        box-sizing: border-box;
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .draw-border::before {
+        border-bottom-width: 4px;
+        border-left-width: 4px;
+    }
+    .draw-border::after {
+        border-top-width: 4px;
+        border-right-width: 4px;
+    }
+    .draw-border:hover {
+        color: #ffe593;
+    }
+    .draw-border:hover::before,
+    .draw-border:hover::after {
+        border-color: #fde047;
+        transition:
+            border-color 0s,
+            width 0.25s,
+            height 0.25s;
+        width: 100%;
+        height: 100%;
+    }
+    .draw-border:hover::before {
+        transition-delay: 0s, 0s, 0.25s;
+    }
+    .draw-border:hover::after {
+        transition-delay: 0s, 0.25s, 0s;
+    }
+</style>
+
+
