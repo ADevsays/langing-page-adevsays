@@ -5,7 +5,6 @@ export const prerender = false;
     const modal = document.querySelector('#formModal');
     const form = document.querySelector('#form');
     const input = document.querySelector("#email-input") as HTMLInputElement;
-    let emailValue = '';
     const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Muchas gracias por <span class="text-white">registrate con antelación</span>, espera noticias pronto!</h3>`;
     const componentError = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Ups! <span class="text-blue-500">Parece que ya estás registrado.</span>
         <br>
@@ -33,7 +32,7 @@ export const prerender = false;
         })
     }
 
-    const sendEmail= async()=>{
+    const sendEmail= async(emailValue:string)=>{
         if(!form) return;
         const res = await fetch("/api/post-email", {
             method:'POST',
@@ -59,17 +58,10 @@ export const prerender = false;
 
     form?.addEventListener("submit", (e:Event)=>{
         e.preventDefault();
-        sendEmail();
-        emailValue = '';
+        sendEmail(input.value);
         input.value = '';
     });
 
-    input?.addEventListener("change", (e:Event)=>{
-        const inputTarget = e.target;
-        if(!inputTarget ||  !(inputTarget instanceof HTMLInputElement)) return;
-        const value = inputTarget.value;
-        emailValue += value;
-    })
 
 </script>
 
