@@ -2,7 +2,14 @@
 import {reactive, onMounted} from "vue";
 import ItemCountDown from "./ItemCountDown.vue";
 
-const time = reactive({
+interface Time {
+    days: string;
+    hours: string;
+    minutes: string;
+    seconds: string;
+}
+
+const time: Time = reactive({
     days: '02',
     hours: '04',
     minutes: '12',
@@ -47,4 +54,3 @@ onMounted(()=>{
         <ItemCountDown :time="time.seconds" label="Segundos"/>
     </div>
 </template>
-
