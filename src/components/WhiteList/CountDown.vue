@@ -28,7 +28,7 @@ onMounted(()=>{
         const HOURS = MINUTES * 60;
         const DAYS = HOURS * 24;
 
-        const FUTURE_TIMESTAMP = 1709600400000;
+        const FUTURE_TIMESTAMP = 1709614800000;
         const difference = FUTURE_TIMESTAMP -  Date.now();
         
         time.days = formatTime(difference / DAYS);
