@@ -10,25 +10,27 @@ interface Time {
 }
 
 const time: Time = reactive({
-    days: '02',
-    hours: '04',
-    minutes: '12',
-    seconds: '59'
+    days: '00',
+    hours: '00',
+    minutes: '00',
+    seconds: '00'
 });
 
 onMounted(()=>{
+
+    const FUTURE_TIMESTAMP = 1709614800000;
     
     const formatTime =(time:number)=>{
         return Math.floor(time).toString().padStart(2, "0");
     }
-
+    if(FUTURE_TIMESTAMP < Date.now()) return;
+    
     function setupTime(){
         const SECONDS = 1000;
         const MINUTES = SECONDS * 60;
         const HOURS = MINUTES * 60;
         const DAYS = HOURS * 24;
 
-        const FUTURE_TIMESTAMP = 1709614800000;
         const difference = FUTURE_TIMESTAMP -  Date.now();
         
         time.days = formatTime(difference / DAYS);

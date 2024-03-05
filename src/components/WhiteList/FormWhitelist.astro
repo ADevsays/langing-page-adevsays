@@ -58,6 +58,7 @@ export const prerender = false;
 
     form?.addEventListener("submit", (e:Event)=>{
         e.preventDefault();
+        return;
         sendEmail(input.value);
         input.value = '';
     });
