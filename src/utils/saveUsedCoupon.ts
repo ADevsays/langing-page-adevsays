@@ -2,7 +2,6 @@ import keyCouponUse from "src/consts/keyCouponUse";
 import { getFromLocal } from "src/helpers/getFromLocal";
 import { saveInLocal } from "src/helpers/saveInLocal";
 import { createFingerPrint } from "./fingerPrint";
-import { deleteFromLocal } from "src/helpers/deleteFromLocal";
 
 interface ArgumentCheckUsed{
     couponName:string,
