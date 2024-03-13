@@ -5,9 +5,9 @@ export const prerender=false;
 export const POST: APIRoute = async({request})=>{
     const allowedDomains = ["https://adevsays.com", "https://adevsays.vercel.app/asesoria", "http://localhost", "http://localhost:4321", "https://www.adevsays.com/asesoria"];
     const domain = request.headers.get('origin') || "http://localhost";
-
+    console.log(domain)
     if(!allowedDomains.includes(domain)){
-        return new Response("Unauthorized", {status: 401});
+        return new Response(JSON.stringify({domain}), {status: 401});
     }
     try {
         const body = await new Response(request.body).json();
