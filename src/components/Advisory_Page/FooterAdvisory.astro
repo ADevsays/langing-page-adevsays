@@ -1,9 +1,9 @@
 ---
-import ButtonAdvisory from './ButtonAdvisory.astro';
+import ButtonAdvisory from './ButtonAdvisory.vue';
 
 ---
 <section class="lg:px-[9rem] relative pb-40 w-full m-0 flex justify-center">
-    <div id="advisory-zone" class="bg-gradient-to-br from-[#680909] via-[#030712] to-[#030712] flex flex-col border border-gray-800 justify-center items-center rounded-xl px-12 py-16 size-full">
+    <div id="advisory-zone" class="bg-gradient-to-br from-[#680909] via-[#030712] to-[#030712] flex flex-col border border-gray-800 justify-center items-center rounded-xl px-8 py-16 size-full">
         <h2 class="text-center font-bold text-white  text-xl md:text-3xl max-w-[700px]">
             ¡Reserva tu asesoría ahora mismo y empecemos a solucionar bugs!
         </h2>
@@ -12,7 +12,7 @@ import ButtonAdvisory from './ButtonAdvisory.astro';
             También podrías enviarme un correo a <span class="font-bold text-white"> adevsaysoficial@gmail.com</span>
         </p>
         <div class="flex justify-center items-center gap-8 p-0 w-full max-w-[420px]">
-            <ButtonAdvisory/>    
+            <ButtonAdvisory client:load/>    
         </div>
     </div>
 </section>

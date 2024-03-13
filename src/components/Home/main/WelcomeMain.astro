@@ -1,21 +1,24 @@
 ---
-import NavButton from '../../header/NavButton.astro';
+import NavButton from '../../header/NavButton.vue';
 import ContainerMain from '../../ContainerMain.astro';
 import ImageMain from './ImageMain.astro';
 import SocialMedia from './SocialMedia.astro';
 ---
 
 <ContainerMain>
-    <div>
-        <h1 class="font-bold animate-fade-in-up animate-delay-100 lg:text-5xl text-4xl text-white text-balance">Resuelve problemas con <span class="text-yellow-400">Adevsays</span></h1>
-        <div class="text-gray-300">
-            <p class="mt-8 text-base lg:text-lg w-full lg:max-w-[900px] text-pretty">Descubre cómo puedes <span class="font-semibold">mejorar</span> tus habilidades, superar obstáculos e implementar cambios <b class="font-semibold text-yellow-400">académicos</b> en tu código web.</p>
-            <SocialMedia/>
+    <div class="flex flex-col justify-center items-center w-full gap-0 md:gap-8 lg:flex-row">
+        <div>
+            <h1 class="font-bold animate-fade-in-up animate-delay-100 lg:text-5xl text-4xl text-white text-balance">Resuelve problemas con <span class="text-yellow-400">Adevsays</span></h1>
+            <div class="text-gray-300">
+                <p class="mt-8 text-base lg:text-lg w-full lg:max-w-[900px] text-pretty">Descubre cómo puedes <span class="font-semibold">mejorar</span> tus habilidades, superar obstáculos e implementar cambios <b class="font-semibold text-yellow-400">académicos</b> en tu código web.</p>
+                <SocialMedia/>
+            </div>
+            <aside class="mt-8 flex items-center flex-wrap gap-3 animate-fade-in animate-delay-250">
+                <NavButton link="" label="Ver apps y productos" color="blue"/>
+                <NavButton label="Agendar asesoría" link="/asesoria" color="yellow"/>
+            </aside>
         </div>
-        <aside class="mt-8 flex items-center flex-wrap gap-3 animate-fade-in animate-delay-250">
-            <NavButton label="Ver apps y productos" color="blue"/>
-            <NavButton label="Agendar asesoría" link="/asesoria" color="yellow"/>
-        </aside>
+        <ImageMain/>
     </div>
-    <ImageMain/>
+    
 </ContainerMain>

@@ -21,3 +21,4 @@ pnpm-debug.log*
 .DS_Store
 
 /src/pages/api/post-send-newsLetter.ts
+/ToDo.md
