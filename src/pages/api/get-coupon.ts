@@ -4,7 +4,7 @@ export const prerender=false;
 
 
 export const GET: APIRoute = async({request})=>{
-    const allowedDomains = ["https://adevsays.com", "https://adevsays.vercel.app", "http://localhost"];
+    const allowedDomains = ["https://adevsays.com", "https://adevsays.vercel.app", "http://localhost", "https://www.adevsays.com/asesoria"];
     const domain = request.headers.get('origin') || "http://localhost";
     if(!allowedDomains.includes(domain)){
         return new Response("Unauthorized", {status: 401});

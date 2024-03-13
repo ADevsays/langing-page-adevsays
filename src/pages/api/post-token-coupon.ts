@@ -3,7 +3,7 @@ import { saveCouponToken } from "src/services/googleSheets/tokenCouponActions";
 export const prerender=false;
 
 export const POST: APIRoute = async({request})=>{
-    const allowedDomains = ["https://adevsays.com", "https://adevsays.vercel.app", "http://localhost", "http://localhost:4321"];
+    const allowedDomains = ["https://adevsays.com", "https://adevsays.vercel.app/asesoria", "http://localhost", "http://localhost:4321", "https://www.adevsays.com/asesoria"];
     const domain = request.headers.get('origin') || "http://localhost";
 
     if(!allowedDomains.includes(domain)){
