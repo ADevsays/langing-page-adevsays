@@ -7,6 +7,7 @@ import { reloadTokenIfExists } from 'src/utils/saveUsedCoupon';
 import keyCouponUse from 'src/consts/keyCouponUse';
 import { getFromLocal } from 'src/helpers/getFromLocal';
 import { deleteFromLocal } from 'src/helpers/deleteFromLocal';
+import parsedToken from 'src/helpers/parsedToke';
 import createPayButton from 'src/helpers/createPayButton';
 
 const couponModalState = ref(false);
@@ -36,9 +37,10 @@ const updateCouponModal = async ()=>{
     price.normal = String(existsCoupon.price);
     price.coupon = true;
     alreadyHaveCoupon.value = true;
-    createPayButton(price.normal);
+    createPayButton(existsCoupon.price);
     setTimeout(() => {
         alreadyHaveCoupon.value = false;
+        couponModalState.value = false;
     }, 5000);
 };
 
@@ -49,7 +51,7 @@ const buttonCouponText = computed(()=>{
 onMounted(async ()=>{
     const stringDataCouponUsed = getFromLocal(keyCouponUse);
     if(!stringDataCouponUsed) return;
-    const objCouponDataSave = JSON.parse(atob(stringDataCouponUsed));
+    const objCouponDataSave = parsedToken(stringDataCouponUsed);
     const now = new Date().getTime();
     const isExpired = now >= objCouponDataSave.expirationTime;
     if(isExpired){
@@ -58,7 +60,6 @@ onMounted(async ()=>{
     };
     price.normal = String(objCouponDataSave.price);
     price.coupon = true;
-    await createPayButton(objCouponDataSave.price);
 });
 
 </script>

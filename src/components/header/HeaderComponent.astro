@@ -26,9 +26,9 @@ const links = [
     const hamburger = $("#hamburger") as HTMLElement;
     const layer = $("#navLayer");
     const containerNav = $("#container-nav");
-
     const links = document.querySelectorAll('a');
-    function toggleNavlinks() {
+    console.log(links)
+    function toggleNavlinks(isHamburger:boolean) {
         if(!navlinks || !hamburger || !layer || !containerNav) return;
         if (isToggled) {
             navlinks.classList.add("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
@@ -43,19 +43,19 @@ const links = [
                 layer.classList.remove("origin-top", "scale-y-100");
                 containerNav.classList.remove('fixed');
                 containerNav.classList.add('absolute');
-            }, 350);
+            }, isHamburger ? 0 : 350);
         }
     }
     hamburger.addEventListener("click", () => {
         isToggled = !isToggled;
-        toggleNavlinks();
+        toggleNavlinks(true);
     });
 
 
     links.forEach((link) => {
         link.addEventListener("click", () => {
             isToggled = false;
-            toggleNavlinks();
+            toggleNavlinks(false);
         });
     });
     

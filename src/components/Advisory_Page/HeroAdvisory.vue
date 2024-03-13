@@ -30,7 +30,7 @@ onMounted(()=>{
                 <ButtonAdvisory/>
             </div>
             </aside>
-            <aside class="object-contain aspect-video relative w-full draw-border animate-fade-in-up animate-delay-500">
+            <aside class="object-contain aspect-video relative w-full draw-border animate-fade-in-up animate-delay-300">
                 <img
                     ref="heroImg" 
                     id="img"
