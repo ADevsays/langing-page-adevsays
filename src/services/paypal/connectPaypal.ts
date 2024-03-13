@@ -17,10 +17,11 @@ function actionsOfSuccessfullPayment(){
 
 const formatAmountValue = (amount:string)=> Number(amount).toFixed(2);
 
+const API = import.meta.env.PUBLIC_PAYPAL_API_KEY;
 
-export async function createPaypalButton(api:string, container: HTMLElement | null, price:string){
+export async function createPaypalButton(container: HTMLElement | null, price:string){
     try {
-        await loadScript({ clientId: `${api}&locale=es_ES` });
+        await loadScript({ clientId: `${API}&locale=es_ES` });
         if (paypalButtonInstance) {
             paypalButtonInstance.close();
         }
