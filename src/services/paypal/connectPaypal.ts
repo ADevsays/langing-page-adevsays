@@ -17,7 +17,7 @@ function actionsOfSuccessfullPayment(){
 
 const formatAmountValue = (amount:string)=> Number(amount).toFixed(2);
 
-const API = import.meta.env.PUBLIC_PAYPAL_API_KEY;
+const API = import.meta.env.PUBLIC_PAYPAL_CLIENT_ID;
 
 export async function createPaypalButton(container: HTMLElement | null, price:string){
     try {
