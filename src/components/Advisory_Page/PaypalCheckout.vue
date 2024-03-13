@@ -46,7 +46,7 @@ const buttonCouponText = computed(()=>{
     return couponModalState.value ? "Tal vez más tarde" : "¡Utilízalo ahora mismo!";
 });
 
-onMounted(()=>{
+onMounted(async ()=>{
     const stringDataCouponUsed = getFromLocal(keyCouponUse);
     if(!stringDataCouponUsed) return;
     const objCouponDataSave = JSON.parse(atob(stringDataCouponUsed));
@@ -58,6 +58,7 @@ onMounted(()=>{
     };
     price.normal = String(objCouponDataSave.price);
     price.coupon = true;
+    await createPayButton(objCouponDataSave.price);
 });
 
 </script>
