@@ -20,6 +20,7 @@
     "@midudev/tailwind-animations": "^0.0.7",
     "@paypal/paypal-js": "^8.0.2",
     "@sendgrid/mail": "^8.1.1",
+    "@vercel/analytics": "^1.2.2",
     "astro": "^4.3.2",
     "googleapis": "^133.0.0",
     "tailwindcss": "^3.4.1",
