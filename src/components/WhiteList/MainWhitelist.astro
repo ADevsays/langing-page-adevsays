@@ -24,22 +24,26 @@ import FormWhitelist from './FormWhitelist.astro';
     <FormWhitelist/>
     <div class="flex-col text-center flex justify-center items-center w-full gap-8">
         <h1 class="font-semibold text-4xl uppercase animate-fade-in-up">
+            ¡Abrimos  
             <span class="m-0 p-0 w-fit bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
-                ¡Asesorías
+                cupos 
             </span>
-            por Adevsays 
+            para la  
+            <span class="m-0 p-0 w-fit bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
+                News Letter
+            </span>
             <span class="bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
-                pronto!
             </span>
+            de Adevsays!
         </h1>
-        <h2 class="font-semibold text-gray-300 text-xl">Reserva un cupo ahora mismo para obtener <span class="text-white font-bold">beneficios</span> espectaculares</h2>
-        <p class="text-gray-400">¡Se han cerrado las inscripciones! <span class="font-bold text-yellow-400">Muchas gracias a todos</span></p>
+        <h2 class="font-semibold text-gray-300 text-xl">Gracias al apoyo abriremos nuevos cupos por <span class="text-white font-bold">tiempo</span> limitado</h2>
+        <h3>Con beneficios espectaculares para mis asesorías...</h3>
+        <p class="font-bold text-yellow-400">+100 cupos nuevos</p>
         <CountDown client:load/>
         <button 
             id="openModal"
-            disabled
-            class="text-white opacity-70 pointer transition bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-br font-medium rounded-xl text-base px-6 py-3 text-center mt-4 md:mt-0">
-            Apuntarse ahora
+            class="text-white pointer transition bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-br font-medium rounded-xl text-base px-6 py-3 text-center mt-4 md:mt-0">
+            Inscribirse a la news letter
         </button>
 
         <p class="mt-16 text-gray-300 w-fit max-w-[700px] pb-52">

@@ -16,9 +16,12 @@ const time: Time = reactive({
     seconds: '00'
 });
 
+const getFutureTimeStamp =(date: string)=>new Date(date).getTime();
+
 onMounted(()=>{
 
-    const FUTURE_TIMESTAMP = 1709614800000;
+    const FUTURE_TIMESTAMP = getFutureTimeStamp("2024-03-22");
+    console.log(FUTURE_TIMESTAMP);
     
     const formatTime =(time:number)=>{
         return Math.floor(time).toString().padStart(2, "0");
@@ -30,9 +33,7 @@ onMounted(()=>{
         const MINUTES = SECONDS * 60;
         const HOURS = MINUTES * 60;
         const DAYS = HOURS * 24;
-
         const difference = FUTURE_TIMESTAMP -  Date.now();
-        
         time.days = formatTime(difference / DAYS);
         time.hours = formatTime((difference % DAYS) / HOURS );
         time.minutes = formatTime((difference % HOURS) / MINUTES );
@@ -46,7 +47,7 @@ onMounted(()=>{
 </script>
 
 <template>
-    <div class="w-full animate-blurred-fade-in py-16 md:py-20 box-border px-16 font-bold text-3xl md:text-5xl justify-center mt-3 flex gap-2 md:gap-6 border rounded-lg lg:max-w-[800px] lg:my-12">
+    <div class="w-full animate-blurred-fade-in py-16 md:py-20 box-border px-16 font-bold text-3xl md:text-5xl justify-center mt-3 flex gap-2 md:gap-6 border rounded-lg lg:max-w-[800px] lg:my-6">
         <ItemCountDown :time="time.days" label="Días"/>
         <span aria-hidden="true">:</span>
         <ItemCountDown :time="time.hours" label="Horas"/>

@@ -2,13 +2,13 @@
 export const prerender = false;
 ---
 <script>
+    import { changeClass } from "src/helpers/changeClass";
     const modal = document.querySelector('#formModal');
     const form = document.querySelector('#form');
     const input = document.querySelector("#email-input") as HTMLInputElement;
-    const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Muchas gracias por <span class="text-white">registrate con antelación</span>, espera noticias pronto!</h3>`;
-    const componentError = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Ups! <span class="text-blue-500">Parece que ya estás registrado.</span>
-        <br>
-        ¡Espera noticias pronto!</h3>`;
+    const loader = document.querySelector("#container-loader") as HTMLElement;
+    const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Muchas gracias por <span class="text-white">registrate a mi news letter</span>, espera noticias pronto!</h3>`;
+    const componentError = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Ups! <span class="text-blue-500">Parece que ya estás registrado.</span><br>¡Espera noticias pronto!</h3>`;
 
     const close = ()=>{
         modal?.classList.add("hidden");       
@@ -34,6 +34,9 @@ export const prerender = false;
 
     const sendEmail= async(emailValue:string)=>{
         if(!form) return;
+        changeClass(loader, "flex", "hidden");
+        input.classList.toggle("hidden");
+        document.querySelector(".email-icon")?.classList.toggle("hidden");
         const res = await fetch("/api/post-email", {
             method:'POST',
             body:JSON.stringify({email:emailValue}),
@@ -41,28 +44,19 @@ export const prerender = false;
                 'Content-Type': 'multipart/form-data'
             }
         });
-        const response = await res.json();
-        console.log(response);
-        if(response.success){
-            form.innerHTML = componentSuccess;
-            setTimeout(() => {
-                close();  
-            }, 3000);
-        }else{
-            form.innerHTML = componentError;
-            setTimeout(() => {
-                close();  
-            }, 3000);
-        }
+        const response = await res.json();        
+        changeClass(loader, "hidden", "flex");
+        form.innerHTML = response.success ? componentSuccess : componentError;
+        setTimeout(() => {
+            close();  
+        }, 3000);
     }
-
+    
     form?.addEventListener("submit", (e:Event)=>{
         e.preventDefault();
-        return;
         sendEmail(input.value);
         input.value = '';
     });
-
 
 </script>
 
@@ -71,8 +65,11 @@ export const prerender = false;
         <h3 class="my-6 w-full font-bold text-gray-300 text-xl text-center">¡Comparte tu correo para inscribirte a mi <span class="text-white">News Letter </span> y recibir beneficios exclusivos!</h3>
         <label for="simple-search" class="sr-only">Search</label>
         <div class="relative w-full">
-            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <div class="email-icon absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+            </div>
+            <div id="container-loader" class="w-full justify-center items-center hidden">
+                <div class="loader"></div>
             </div>
             <input type="email" id="email-input" name="email" class="bg-gray-50 py-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ejemplo@gmail.com" required />
         </div>
@@ -86,4 +83,20 @@ export const prerender = false;
     .class{
         color: peru;
     }
+    .loader {
+    width: 50px;
+    padding: 5px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgb(29 78 216);
+    --_m: 
+        conic-gradient(#0000 10%,#000),
+        linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+    }
+    @keyframes l3 {to{transform: rotate(1turn)}}
 </style>
