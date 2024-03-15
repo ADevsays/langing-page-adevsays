@@ -5,14 +5,23 @@ import FormWhitelist from './FormWhitelist.astro';
 ---
 
 <script>
-    const btn = document.querySelector("#openModal");
-    const modal = document.querySelector('#formModal');
-    const openModal = ()=>{        
-        modal?.classList.remove("hidden");        
-        modal?.classList.add("flex");        
+    window.onload = async ()=>{
+        const btn = document.querySelector("#openModal");
+        const modal = document.querySelector('#formModal');
+        const spacesElement = document.querySelector('#available-spaces');
+        const base = 100;
+        const openModal = ()=>{        
+            modal?.classList.remove("hidden");        
+            modal?.classList.add("flex");        
+        }
+        btn?.addEventListener('click', openModal);
+        await fetch("/api/get-connection-sheet");
+        const emailResponse = await fetch("/api/get-emails");
+        const emails = await emailResponse.json();
+        const spacesAvailable = base - emails.length;
+        if(!spacesElement) return;
+        spacesElement.textContent = `+${spacesAvailable} cupos disponibles`;
     }
- 
-    btn?.addEventListener('click', openModal);
 </script>
 
 
@@ -38,7 +47,7 @@ import FormWhitelist from './FormWhitelist.astro';
         </h1>
         <h2 class="font-semibold text-gray-300 text-base md:text-xl">Gracias al apoyo abriremos nuevos cupos por <span class="text-white font-bold">tiempo</span> limitado</h2>
         <h3 class="text-sm md:text-base">Con beneficios espectaculares para mis asesorías...</h3>
-        <p class="font-bold text-yellow-400">+100 cupos nuevos</p>
+        <p class="font-bold text-yellow-400" id="available-spaces">Cupos en tiempo real...</p>
         <CountDown client:load/>
         <button 
             id="openModal"

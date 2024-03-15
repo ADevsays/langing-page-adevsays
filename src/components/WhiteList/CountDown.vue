@@ -19,10 +19,7 @@ const time: Time = reactive({
 const getFutureTimeStamp =(date: string)=>new Date(date).getTime();
 
 onMounted(()=>{
-
-    const FUTURE_TIMESTAMP = getFutureTimeStamp("2024-03-22");
-    console.log(FUTURE_TIMESTAMP);
-    
+    const FUTURE_TIMESTAMP = getFutureTimeStamp("2024-03-22");    
     const formatTime =(time:number)=>{
         return Math.floor(time).toString().padStart(2, "0");
     }

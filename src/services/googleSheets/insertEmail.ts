@@ -1,14 +1,13 @@
-import { connectGoogleSheets, sheetIdentifier } from "./connectGoogleSheets";
+import connectionSheet from "src/utils/getConnectionSheet";
+import { sheetIdentifier } from "./connectGoogleSheets";
 
 export async function insertEmail(email:string){
-    const sheets = await connectGoogleSheets();
+    const sheets = connectionSheet.getSheet();
     const sheet = await sheets.spreadsheets.values.get(sheetIdentifier);
-
-    const rows = sheet.data.values;
+    const rows = sheet.data.values as [];
     if (rows?.some(row => row[0] === email)) {
         return null;
     }
-
     //@ts-ignore
     await sheets.spreadsheets.values.append({
         spreadsheetId: sheetIdentifier.spreadsheetId,

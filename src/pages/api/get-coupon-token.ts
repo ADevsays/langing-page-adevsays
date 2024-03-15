@@ -1,14 +1,12 @@
 import type { APIRoute } from "astro";
+import validateOriginAPI from "src/helpers/validateOriginAPI";
 import { getCouponTokens } from "src/services/googleSheets/tokenCouponActions";
 export const prerender=false;
 
 
 export const GET: APIRoute = async({request})=>{
-    const allowedDomains = ["https://www.adevsays.com", "https://www.adevsays.vercel.app", "http://localhost", "http://localhost:4321"];
-    const domain = request.headers.get('origin') || "http://localhost";
-    if(!allowedDomains.includes(domain)){
-        return new Response("Unauthorized", {status: 401});
-    }
+    const allowedDomains = validateOriginAPI(request);
+    if(!allowedDomains) return new Response("Unauthorized", {status: 401});
     try {
         const coupon = await getCouponTokens();
         const tokens = new Response(JSON.stringify(coupon));

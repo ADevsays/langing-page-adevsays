@@ -48,7 +48,7 @@ export const prerender = false;
         changeClass(loader, "hidden", "flex");
         form.innerHTML = response.success ? componentSuccess : componentError;
         setTimeout(() => {
-            close();  
+            window.location.reload();  
         }, 3000);
     }
     

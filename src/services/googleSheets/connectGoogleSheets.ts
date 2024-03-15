@@ -1,4 +1,5 @@
 import {google} from "googleapis";
+import connectionSheet from "src/utils/getConnectionSheet";
 
 export const sheetIdentifier = {
     spreadsheetId: '1IWTQ18Hai6cV-dsRbtFJiT0XFgKIVLR42H1dpmZVaPs',
@@ -11,8 +12,8 @@ export async function connectGoogleSheets(){
         credentials: JSON.parse(credentials),
         scopes: ['https://www.googleapis.com/auth/spreadsheets']
     });
-
+    console.log("call from anywher")
     const sheets = google.sheets({ version: 'v4', auth});
-
+    connectionSheet.updateConnectionSheet(sheets);
     return sheets;
 }
