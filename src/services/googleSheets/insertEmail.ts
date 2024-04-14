@@ -5,6 +5,7 @@ export async function insertEmail(email:string){
     const sheets = connectionSheet.getSheet();
     const sheet = await sheets.spreadsheets.values.get(sheetIdentifier);
     const rows = sheet.data.values as [];
+    console.log(email)
     if (rows?.some(row => row[0] === email)) {
         return null;
     }

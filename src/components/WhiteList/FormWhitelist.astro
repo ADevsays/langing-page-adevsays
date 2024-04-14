@@ -10,6 +10,8 @@ export const prerender = false;
     const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Muchas gracias por <span class="text-white">registrate a mi news letter</span>, espera noticias pronto!</h3>`;
     const componentError = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Ups! <span class="text-blue-500">Parece que ya estás registrado.</span><br>¡Espera noticias pronto!</h3>`;
 
+    console.log("HOLA")
+
     const close = ()=>{
         modal?.classList.add("hidden");       
         modal?.classList.remove("flex");  
@@ -19,7 +21,7 @@ export const prerender = false;
         if(!e) return;
         if(e.target === form || !e.target) return;
         if(form?.contains(e.target as Node)) return;
-        close();      
+        close();     
     }
 
     if(modal){
@@ -35,13 +37,14 @@ export const prerender = false;
     const sendEmail= async(emailValue:string)=>{
         if(!form) return;
         changeClass(loader, "flex", "hidden");
+        console.log(emailValue)
         input.classList.toggle("hidden");
         document.querySelector(".email-icon")?.classList.toggle("hidden");
         const res = await fetch("/api/post-email", {
             method:'POST',
             body:JSON.stringify({email:emailValue}),
             headers:{
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             }
         });
         const response = await res.json();        

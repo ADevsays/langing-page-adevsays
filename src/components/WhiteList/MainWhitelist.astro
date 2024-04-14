@@ -6,17 +6,18 @@ import PillContainer from './PillContainer.astro';
 ---
 
 <script>
-    window.onload = async ()=>{
-        const btn = document.querySelector("#openModal");
+    window.onload = ()=>{
+        const btn = document.querySelector("#openModal") as HTMLButtonElement;
         const modal = document.querySelector('#formModal');
         //const spacesElement = document.querySelector('#available-spaces');
         //const base = 100;
-        const openModal = ()=>{        
+        const openModal = async ()=>{
+            await fetch("/api/get-connection-sheet"); 
             modal?.classList.remove("hidden");        
             modal?.classList.add("flex");        
         }
-        btn?.addEventListener('click', openModal);
-        //await fetch("/api/get-connection-sheet");
+        btn.onclick = openModal;
+      
         //const emailResponse = await fetch("/api/get-emails");
         //const emails = await emailResponse.json();
         //const spacesAvailable = base - emails.length;
@@ -35,7 +36,7 @@ import PillContainer from './PillContainer.astro';
     <section class="flex justify-center gap-20 xl:gap-3 xl:justify-start flex-col lg:flex-row">
         <div class="flex-col flex-1 text-left flex justify-center items-start w-full gap-6 md:gap-8">
             <span class="font-medium p-2 px-4 bg-blue-700 rounded-xl">¡Es gratis!</span>
-            <h1 class="font-semibold text-3xl md:text-5xl text-pretty uppercase animate-fade-in-up animate-delay-300">
+            <h1 class="font-semibold text-3xl md:text-4xl lg:text-5xl text-pretty uppercase animate-fade-in-up animate-delay-300">
                 SUSCRÍBETE A LA
                 <span class="m-0 p-0 w-fit bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
                     NEWSLETTER
