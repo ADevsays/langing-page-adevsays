@@ -1,0 +1,44 @@
+---
+import Book from "@icons/Book.astro";
+import Square from "@icons/Square.astro";
+import News from "@icons/News.astro";
+import Code from "@icons/Code.astro";
+
+const pills = [
+    {
+        icon: Book,
+        description:"Explicación de términos fundamentales como algoritmos, patrones o arquitectura."
+    },
+    {
+        icon: News,
+        description:"Las últimas noticias de tecnología y programación."
+    },
+    {
+        icon: Code,
+        description:"Ejemplos del mundo real con código práctico."
+    },
+    {
+        icon: Square,
+        description:"Experiencias personales y consejos únicos que no encontrarás en otro lado."
+    },
+];
+
+---
+
+<aside class="flex-[0.8]">
+    <h2 class="pl-2 mb-2 font-bold text-xl">Lo que te puedes perder por no inscribirte:</h2>
+    <div class="flex flex-col gap-3">
+        {
+            pills.map((pill, index)=> {
+                const Icon = pill.icon;
+                const fatherClass = `animate-delay-${100 * (index + 1)} rounded-xl animate-fade-in-left p-4 bg-opacity-20 bg-black flex items-center gap-6`;
+                return(
+                    <div class={fatherClass}>
+                        <span class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl p-5"><Icon/></span>
+                        <p class="text-white font-medium animate-delay md:text-base text-sm">{pill.description}</p>
+                    </div>
+                )
+            })
+        }    
+    </div>
+</aside>

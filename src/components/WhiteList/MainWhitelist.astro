@@ -2,60 +2,63 @@
 import ContainerMain from '../ContainerMain.astro';
 import CountDown from './CountDown.vue';
 import FormWhitelist from './FormWhitelist.astro';
+import PillContainer from './PillContainer.astro';
 ---
 
 <script>
     window.onload = async ()=>{
         const btn = document.querySelector("#openModal");
         const modal = document.querySelector('#formModal');
-        const spacesElement = document.querySelector('#available-spaces');
-        const base = 100;
+        //const spacesElement = document.querySelector('#available-spaces');
+        //const base = 100;
         const openModal = ()=>{        
             modal?.classList.remove("hidden");        
             modal?.classList.add("flex");        
         }
         btn?.addEventListener('click', openModal);
-        await fetch("/api/get-connection-sheet");
-        const emailResponse = await fetch("/api/get-emails");
-        const emails = await emailResponse.json();
-        const spacesAvailable = base - emails.length;
-        if(!spacesElement) return;
-        spacesElement.textContent = `+${spacesAvailable} cupos disponibles`;
+        //await fetch("/api/get-connection-sheet");
+        //const emailResponse = await fetch("/api/get-emails");
+        //const emails = await emailResponse.json();
+        //const spacesAvailable = base - emails.length;
+        //if(!spacesElement) return;
+        //spacesElement.textContent = `+${spacesAvailable} cupos disponibles`;
     }
 </script>
 
 
-<ContainerMain>
+<ContainerMain className="flex flex-col justify-center">
     <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20 -z-10">
         <div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
         <div class="blur-[106px] h-48 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
     </div>
     <FormWhitelist/>
-    <div class="flex-col text-center flex justify-center items-center w-full gap-6 md:gap-8">
-        <h1 class="font-semibold text-xl md:text-4xl uppercase animate-fade-in-up">
-            ¡Abrimos  
-            <span class="m-0 p-0 w-fit bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
-                cupos 
-            </span>
-            para la  
-            <span class="m-0 p-0 w-fit bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
-                News Letter
-            </span>
-            <span class="bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
-            </span>
-            de Adevsays!
-        </h1>
-        <h2 class="font-semibold text-gray-300 text-base md:text-xl">Gracias al apoyo abriremos nuevos cupos por <span class="text-white font-bold">tiempo</span> limitado</h2>
-        <h3 class="text-sm md:text-base">Con beneficios espectaculares para mis asesorías...</h3>
-        <p class="font-bold text-yellow-400" id="available-spaces">Cargando cupos en tiempo real...</p>
-        <CountDown client:load/>
-        <button 
-            id="openModal"
-            class="text-white pointer transition bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-br font-medium rounded-xl text-base px-6 py-3 text-center mt-4 md:mt-0">
-            Inscribirse a la news letter
-        </button>
-
-        <p class="mt-16 text-gray-300 w-fit max-w-[700px] pb-52">
+    <section class="flex justify-center gap-20 xl:gap-3 xl:justify-start flex-col lg:flex-row">
+        <div class="flex-col flex-1 text-left flex justify-center items-start w-full gap-6 md:gap-8">
+            <span class="font-medium p-2 px-4 bg-blue-700 rounded-xl">¡Es gratis!</span>
+            <h1 class="font-semibold text-3xl md:text-5xl text-pretty uppercase animate-fade-in-up animate-delay-300">
+                SUSCRÍBETE A LA
+                <span class="m-0 p-0 w-fit bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
+                    NEWSLETTER
+                </span>
+                DE  
+                <span class="text-yellow-400">
+                    Adevsays
+                </span>
+            </h1> 
+            <h2 class="font-semibold text-gray-400 text-base md:text-lg max-w-[700px] animate-fade-in-up animate-delay-700">Por primera vez abrimos nuestra newsletter al <span class="text-white font-bold">público general.</span></h2>
+            <p class="text-sm md:text-base">👇 Suscríbete <span class="text-yellow-400">ahora</span> porque esto podría cambiar. 👇</p>
+            <!-- <p class="font-bold text-yellow-400" id="available-spaces">Cargando cupos en tiempo real...</p> -->
+            <!-- <CountDown client:load/> -->
+            <button 
+                id="openModal"
+                class="text-white animate-float animate-delay-800 pointer transition bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-br font-medium rounded-xl text-base px-6 py-3 text-center mt-4 md:mt-6">
+                Inscribirse a la news letter
+            </button> 
+        </div>
+        <PillContainer/>
+    </section>
+    <section class="mt-32 text-center flex flex-col justify-center items-center">
+        <p class="text-gray-300 w-fit max-w-[720px] pb-52">
             <span class="font-bold text-white">¡Regístrate</span>
              con antelación para ser de los primeros en tener acceso a la news letter! 
              <br>
@@ -67,7 +70,6 @@ import FormWhitelist from './FormWhitelist.astro';
             para redimir cuando quieras que te dará un
             <span class="font-bold text-white">descuento </span>en una
             de mis asesorías. 🙀
-        </p>
-
-    </div>
+        </p> 
+    </section>
 </ContainerMain>
