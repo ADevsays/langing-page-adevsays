@@ -16,10 +16,11 @@ import PillContainer from './PillContainer.astro';
             modal?.classList.remove("hidden");        
             modal?.classList.add("flex");        
         }
+        btn.onclick = openModal; 
+        btn?.addEventListener("click", openModal);
         await fetch("/api/get-connection-sheet"); 
-        setTimeout(() => {
-            btn.onclick = openModal;            
-        }, 1000);
+     
+        
 
         //const emailResponse = await fetch("/api/get-emails");
         //const emails = await emailResponse.json();
