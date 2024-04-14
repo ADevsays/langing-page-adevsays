@@ -1,23 +1,26 @@
 ---
 import ContainerMain from '../ContainerMain.astro';
-import CountDown from './CountDown.vue';
+    // import CountDown from './CountDown.vue';
 import FormWhitelist from './FormWhitelist.astro';
 import PillContainer from './PillContainer.astro';
 ---
 
 <script>
-    window.onload = ()=>{
+    window.onload = async ()=>{
         const btn = document.querySelector("#openModal") as HTMLButtonElement;
         const modal = document.querySelector('#formModal');
         //const spacesElement = document.querySelector('#available-spaces');
         //const base = 100;
-        const openModal = async ()=>{
-            await fetch("/api/get-connection-sheet"); 
+        const openModal = ()=>{
+            console.log("click")
             modal?.classList.remove("hidden");        
             modal?.classList.add("flex");        
         }
-        btn.onclick = openModal;
-      
+        await fetch("/api/get-connection-sheet"); 
+        setTimeout(() => {
+            btn.onclick = openModal;            
+        }, 1000);
+
         //const emailResponse = await fetch("/api/get-emails");
         //const emails = await emailResponse.json();
         //const spacesAvailable = base - emails.length;
