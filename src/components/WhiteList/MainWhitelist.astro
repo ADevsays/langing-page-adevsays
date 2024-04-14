@@ -6,14 +6,13 @@ import PillContainer from './PillContainer.astro';
 ---
 
 <script>
-    window.onload = async ()=>{
+
+    async function main(){
         const openModal = ()=>{
             const modal = document.querySelector('#formModal');
             modal?.classList.remove("hidden");        
             modal?.classList.add("flex");        
         };
-
-        await fetch("/api/get-connection-sheet"); 
 
         const assignClickEvent = () => {
             const btn = document.querySelector("#openModal") as HTMLButtonElement;
@@ -24,7 +23,9 @@ import PillContainer from './PillContainer.astro';
 
         assignClickEvent();
         document.addEventListener("astro:after-swap", assignClickEvent);
-     
+
+        await fetch("/api/get-connection-sheet"); 
+
         
         //const spacesElement = document.querySelector('#available-spaces');
         //const base = 100;
@@ -34,6 +35,9 @@ import PillContainer from './PillContainer.astro';
         //if(!spacesElement) return;
         //spacesElement.textContent = `+${spacesAvailable} cupos disponibles`;
     }
+
+    document.addEventListener("astro:page-load", main);
+       
 </script>
 
 
