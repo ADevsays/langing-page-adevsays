@@ -3,7 +3,6 @@ export const prerender = false;
 ---
 <script>
     import { changeClass } from "src/helpers/changeClass";
-    const modal = document.querySelector('#formModal');
     const form = document.querySelector('#form');
     const input = document.querySelector("#email-input") as HTMLInputElement;
     const loader = document.querySelector("#container-loader") as HTMLElement;
@@ -13,26 +12,33 @@ export const prerender = false;
     console.log("HOLA")
 
     const close = ()=>{
+        const modal = document.querySelector('#formModal');
         modal?.classList.add("hidden");       
         modal?.classList.remove("flex");  
     }
 
     const closeModal =(e?:Event)=>{
+        console.log("click")
         if(!e) return;
         if(e.target === form || !e.target) return;
         if(form?.contains(e.target as Node)) return;
         close();     
     }
 
-    if(modal){
-        modal?.addEventListener("click", closeModal);
-        window.addEventListener("keydown", (e)=>{
-            const key = e.key;
-            if(key === "Escape"){
-                closeModal(e);
-            }
-        })
+    const assingCloseEvent=()=>{
+        const modal = document.querySelector('#formModal');
+        if(modal){
+            modal?.addEventListener("click", closeModal);
+            window.addEventListener("keydown", (e)=>{
+                const key = e.key;
+                if(key === "Escape"){
+                    closeModal(e);
+                }
+            })
+        }
     }
+    assingCloseEvent();
+    document.addEventListener("astro:after-swap", assingCloseEvent);
 
     const sendEmail= async(emailValue:string)=>{
         if(!form) return;

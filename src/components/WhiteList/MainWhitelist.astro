@@ -7,21 +7,25 @@ import PillContainer from './PillContainer.astro';
 
 <script>
     window.onload = async ()=>{
-        const btn = document.querySelector("#openModal") as HTMLButtonElement;
-        const modal = document.querySelector('#formModal');
-        //const spacesElement = document.querySelector('#available-spaces');
-        //const base = 100;
         const openModal = ()=>{
-            console.log("click")
+            const modal = document.querySelector('#formModal');
             modal?.classList.remove("hidden");        
             modal?.classList.add("flex");        
-        }
-        btn.onclick = openModal; 
-        btn?.addEventListener("click", openModal);
+        };
+
         await fetch("/api/get-connection-sheet"); 
+
+        const assignClickEvent = () => {
+            const btn = document.querySelector("#openModal") as HTMLButtonElement;
+            btn.onclick = openModal;
+        }
+
+        assignClickEvent();
+        document.addEventListener("astro:after-swap", assignClickEvent);
      
         
-
+        //const spacesElement = document.querySelector('#available-spaces');
+        //const base = 100;
         //const emailResponse = await fetch("/api/get-emails");
         //const emails = await emailResponse.json();
         //const spacesAvailable = base - emails.length;
