@@ -27,15 +27,15 @@ export const prerender = false;
 
     const assingCloseEvent=()=>{
         const modal = document.querySelector('#formModal');
-        if(modal){
-            modal?.addEventListener("click", closeModal);
-            window.addEventListener("keydown", (e)=>{
-                const key = e.key;
-                if(key === "Escape"){
-                    closeModal(e);
-                }
-            })
-        }
+        if(!modal) return;
+        modal?.addEventListener("click", closeModal);
+        window.addEventListener("keydown", (e)=>{
+            const key = e.key;
+            if(key === "Escape"){
+                closeModal(e);
+            }
+        })
+        
     }
     assingCloseEvent();
     document.addEventListener("astro:after-swap", assingCloseEvent);

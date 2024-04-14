@@ -17,6 +17,8 @@ import PillContainer from './PillContainer.astro';
 
         const assignClickEvent = () => {
             const btn = document.querySelector("#openModal") as HTMLButtonElement;
+            if(!btn) return;
+            btn?.addEventListener("click", openModal);
             btn.onclick = openModal;
         }
 

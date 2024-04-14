@@ -1,0 +1,10 @@
+{
+    "redirects": [
+      {
+        "source": "/whitelist",
+        "destination": "/newsletter",
+        "permanent": true
+      }
+    ]
+  }
+  
