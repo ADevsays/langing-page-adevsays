@@ -4,7 +4,8 @@ const props = defineProps<{
     img: string,
     title: string, 
     description: string,
-    link:string
+    link:string,
+    date:string
 }>();
 
 const image = ref<HTMLElement | null>(null);
@@ -43,7 +44,7 @@ onMounted(() => {
                 alt="Miniatura del video 'Desarrollador analiza el algoritmo de tiktok de Adevsays'"
                 class="size-full min-h-[80px] border-2 rounded-lg rounded-b-none border-yellow-400 object-cover">
         </div>
-        <div class="p-4 pt-5 h-auto max-h-[300px] relative">
+        <div class="p-4 pt-5 h-full max-h-[230px] relative">
             <h4 class="font-bold dark:text-white">
                 {{ props.title }}
             </h4>
@@ -55,7 +56,7 @@ onMounted(() => {
                     {{ props.description }}
                 </p>
             </article>
-            <span class="bottom-[10px] right-[10px] text-sm absolute bg-gray-800 p-1 rounded-md px-3">hace 11 dias</span>
+            <span class="bottom-[10px] right-[10px] text-sm absolute bg-gray-800 p-1 rounded-md px-3">{{ props.date }}</span>
         </div>
     </a>
 </template>
