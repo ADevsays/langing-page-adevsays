@@ -5,16 +5,18 @@ const {size} = Astro.props;
     <a 
         rel="noreferrer nofollow"
         target="_blank" 
-        href="https://wa.me/573186287769" 
-        class={`max-w-[${size}px] text-center font-medium cursor-pointer z-[999] hover:scale-[1.04] transition-transform p-2`}>
+        href="https://wa.me/573186287769"
+        style={`max-width: ${size}px`} 
+        class={`text-center font-medium cursor-pointer z-[999] hover:scale-[1.04] transition-transform p-2`}>
         <img src="./resources/advisory/Whatsapp.webp" alt="Icono de Whatsapp">
         <button class="cursor-pointer m-2 rounded-lg p-2 bg-emerald-500 text-white w-[90%] mt-4 ">Contáctame</button>
     </a>
     <a 
         rel="noreferrer nofollow"
         target="_blank" 
-        href="https://ig.me/m/a_dev_says/" 
-        class={`max-w-[${size}px] text-center font-medium cursor-pointer z-[999] hover:scale-[1.04] transition-transform`}>
+        href="https://ig.me/m/a_dev_says/"
+        style={`max-width: ${size}px`} 
+        class={`text-center font-medium cursor-pointer z-[999] hover:scale-[1.04] transition-transform`}>
         <img src="./resources/advisory/Instagram.webp" alt="Icono de Instagram">
         <button class="cursor-pointer m-2 rounded-lg p-2 bg-pink-500 text-white w-[90%] ">Contáctame</button>
     </a>
