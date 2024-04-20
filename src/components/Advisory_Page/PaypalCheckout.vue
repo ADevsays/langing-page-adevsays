@@ -13,9 +13,9 @@ import createPayButton from 'src/helpers/createPayButton';
 const couponModalState = ref(false);
 const alreadyHaveCoupon = ref(false);
 const price = reactive({
-    normal: "20",
+    normal: "19",
     coupon: false,
-    base: 20
+    base: 19
 });
 
 const updateCurrentPrice = (newPrice:string)=>{

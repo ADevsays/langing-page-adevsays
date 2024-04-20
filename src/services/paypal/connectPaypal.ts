@@ -20,6 +20,7 @@ const formatAmountValue = (amount:string)=> Number(amount).toFixed(2);
 const API = import.meta.env.PUBLIC_PAYPAL_CLIENT_ID;
 
 export async function createPaypalButton(container: HTMLElement | null, price:string){
+    console.log(price)
     try {
         await loadScript({ clientId: `${API}&locale=es_ES` });
         if (paypalButtonInstance) {
@@ -30,7 +31,6 @@ export async function createPaypalButton(container: HTMLElement | null, price:st
         paypalButtonInstance = window?.paypal?.Buttons({
             fundingSource: window.paypal.FUNDING?.CARD,
             createOrder: (_, actions)=>{
-                console.log(price)
                 return actions.order.create({
                     intent: "CAPTURE",
                     purchase_units: [{
