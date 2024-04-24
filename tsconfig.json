@@ -6,6 +6,7 @@
     "paths": {
       "@icons/*":["src/icons/*"], 
       "@components/*":["src/components/*"], 
+      "@sections/*":["src/sections/*"], 
     }
   }
 }

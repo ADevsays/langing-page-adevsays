@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import WelcomeMain from '@components/Home/main/WelcomeMain.astro';
-import Counters from '@components/Home/main/Counters.astro';
-import SectionContent from '@components/Home/content/SectionContent.astro';
-import Advisory from "@components/Home/content/Advisory.astro";
+import WelcomeMain from '@sections/Home/WelcomeMain.astro';
+import Counters from '@sections/Home/Counters.astro';
+import VideosContent from '@sections/Home/VideosContent.astro';
+import Advisory from "@sections/Home/Advisory.astro";
 ---
 
 <Layout title="Adevsays - Programador - Creador - Amante de los gatos" description="Página oficial de Adevsays, creador de contenido y programador.">
@@ -13,7 +13,7 @@ import Advisory from "@components/Home/content/Advisory.astro";
 	<main class="w-full flex flex-wrap min-h-screen">
 		<WelcomeMain/>
 		<Counters/>
-		<SectionContent/>
+		<VideosContent/>
 		<Advisory/>
 	</main>
 </Layout>

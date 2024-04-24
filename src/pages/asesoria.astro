@@ -1,11 +1,11 @@
 ---
-import HeroAdvisory from '../components/Advisory_Page/HeroAdvisory.vue';
-import InfoAdvisory from '../components/Advisory_Page/InfoAdvisory.astro';
-import FooterAdvisory from '../components/Advisory_Page/FooterAdvisory.astro';
-import ModalCalendly from '../components/Advisory_Page/ModalCalendly.vue';
-import PaypalCheckout from '../components/Advisory_Page/PaypalCheckout.vue';
+import HeroAdvisory from '@sections/Advisory/HeroAdvisory.vue';
+import InfoAdvisory from '@sections/Advisory/InfoAdvisory.astro';
+import FooterAdvisory from '@sections/Advisory/FooterAdvisory.astro';
+import ModalCalendly from '@components/Advisory/ModalCalendly.vue';
+import PaypalCheckout from '@components/Advisory/PaypalCheckout.vue';
 import Layout from '../layouts/Layout.astro';
-import Contact from '@components/Advisory_Page/Contact.astro';
+import Contact from '@sections/Advisory/Contact.astro';
 ---
 
 <Layout title="Descubre cómo programar en internet - Asesorías" description="Sercicio de asesorías de Adevsays, creador de contenido y desarrollador de software">
@@ -17,8 +17,8 @@ import Contact from '@components/Advisory_Page/Contact.astro';
 		<HeroAdvisory client:load/>
         <ModalCalendly client:load/>     
         <PaypalCheckout client:load/>
-        <Contact/>
         <InfoAdvisory/>
         <FooterAdvisory/>
+        <Contact/>
 	</main>
 </Layout>
