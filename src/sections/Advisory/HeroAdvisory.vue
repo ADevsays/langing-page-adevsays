@@ -31,7 +31,7 @@ const {handleClick} = useHandleOpenPayment();
             <aside class="text-left w-fit">
                 <h1 class="font-bold text-2xl relative md:text-4xl lg:pt-0 lg:pb-0 pb-4 ">
                     Asesoría <span class="text-yellow-400">personal</span> con <span class="text-yellow-400">Adevsays</span>
-                    <Price class-name="absolute top-[38px] md:top-[10px] right-[4px] md:right-0  lg:right-[20px]"/>
+                    <Price class-name="absolute top-[38px] md:top-[10px] right-[4px] md:right-0  lg:right-[20px] lg:top-[-25px]"/>
                 </h1>
                 <div class="text-gray-300 text-sm text-pretty md:text-lg pt-6 pb-8 w-full">
                     <p>
