@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import Price from "@components/Advisory/Price.vue";
 import { onMounted, ref } from "vue";
 import Loader from "@components/UI/Loader.vue";
 import { useHandleOpenPayment } from "src/composables/useHandleOpenPayment";
+import Price from "@components/Advisory/Price.vue";
 
 const heroImg = ref<null | HTMLImageElement>(null);
 
@@ -19,31 +19,33 @@ const {handleClick} = useHandleOpenPayment();
 
 <template>
     <section class="pt-40 pb-6 lg:pb-20 w-full z-20 lg:px-[9rem] px-6 flex lg:flex-row flex-col items-start justify-start gap-0 lg:gap-12 min-h-[550px]">
-        <div class="[background:radial-gradient(125%_125%_at_50%_10%,#030712_58%,#CC0E0E_120%)]  flex flex-col xl:flex-row gap-8 h-auto relative p-4 pb-12 px-5 pt-8 lg:top-0 lg:py-20 lg:px-12 top-[-50px] rounded-xl">
-            <aside class="pt-2 lg:max-w-[520px] object-contain aspect-video relative w-full draw-border animate-fade-in-up animate-delay-300">
+        <div class="[background:radial-gradient(125%_125%_at_50%_10%,#030712_58%,#CC0E0E_120%)] md:min-w-full flex flex-col xl:flex-row gap-8 h-auto relative p-4 pb-12 px-5 pt-8 lg:top-0 lg:py-20 lg:px-12 top-[-50px] rounded-xl">
+            <aside class="pt-2 lg:max-w-[520px] object-contain aspect-video relative w-full draw-border ">
                 <img
                     ref="heroImg" 
                     id="img"
                     lazy="loading"
-                    class="h-full w-full rounded-lg shadow-sm object-cover shadow-yellow-300" 
+                    class="animate-fade-in-up animate-delay-300 size-full rounded-lg shadow-sm object-cover shadow-yellow-300" 
                     alt="Imagen del personaje de Adevsays pero con estilo futurista">
             </aside>
             <aside class="text-left w-fit">
-                <h1 class="font-bold text-2xl relative md:text-4xl lg:pt-0 lg:pb-0 pb-4">
+                <h1 class="font-bold text-2xl relative md:text-4xl lg:pt-0 lg:pb-0 pb-4 ">
                     Asesoría <span class="text-yellow-400">personal</span> con <span class="text-yellow-400">Adevsays</span>
-                    <Price class-name="absolute top-[38px] md:top-0 right-[4px] md:right-0 lg:top-[-25px]  lg:right-[20px]"/>
+                    <Price class-name="absolute top-[38px] md:top-[10px] right-[4px] md:right-0  lg:right-[20px]"/>
                 </h1>
-                <p class="text-gray-300 text-sm text-pretty md:text-lg pt-6 pb-8 w-full">
-                    Soluciona tus problemas en una llamada <span class="font-bold">1 a 1</span> conmigo de <span class="font-bold">1:30 de duración</span>.
-                    Podemos hablar para:
-                    <ul class="m-2 text-sm list-disc md:text-base">
+                <div class="text-gray-300 text-sm text-pretty md:text-lg pt-6 pb-8 w-full">
+                    <p>
+                        Soluciona tus problemas en una llamada <span class="font-bold">1 a 1</span> conmigo de <span class="font-bold">1:30 de duración</span>.
+                        Podemos hablar para:
+                    </p>
+                    <ul class="ms-4 mt-3 list-disc text-sm md:text-base">
                         <li>Mejorar tu código.</li>
                         <li>Solucionar un problema específico.</li>
                         <li>Enseñarte algo nuevo.</li>
                     </ul>
-                </p>
+                </div>
             <div class="w-full lg:max-w-[97%] relative flex justify-between items-center">
-                <Price class-name=""/>
+                <Price/>
                 <button @click="handleClick" class="text-sm p-2 bg-gradient-to-br from-yellow-300 md:text-base transition to-orange-500 hover:from-yellow-400 hover:to-orange-600  rounded-lg px-3 border-black border-2 bg-yellow-400 text-black font-semibold">¡Agendar ahora!</button>
             </div>
             </aside>

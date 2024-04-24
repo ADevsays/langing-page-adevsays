@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps<{
     className?:string
 }>();
@@ -12,7 +12,7 @@ const props = defineProps<{
     </span>
 </template>
 
-<style scoped>
+<style>
     .price-form{
         clip-path: polygon(0% 0%, 100% 0, 76% 50%, 100% 100%, 0% 100%);
     }
