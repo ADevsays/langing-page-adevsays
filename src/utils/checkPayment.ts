@@ -10,7 +10,7 @@ const objPayment:CheckPayment = {
     useCoupon: false,
     setExpiration: function(){
         const now = new Date().getTime();
-        this.expiration =  now + (24 * 60 * 60 * 1000);
+        this.expiration =  now + (2 * 60 * 60 * 1000);
     }
 }
 

@@ -6,7 +6,7 @@ let paypalButtonInstance: PayPalButtonsComponent | undefined;
 
 function actionsOfSuccessfullPayment(){
     injectSuccessAlert("#paypalModal");
-    savePayment("20");
+    savePayment("19");
     setTimeout(()=>{
         handleModal("#modalCalendly", 1500);
         closeModal("#paypalModal");
