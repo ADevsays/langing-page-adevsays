@@ -1,0 +1,40 @@
+---
+interface Props {
+    title: string;
+    img: string;
+    description: string;
+    tags: string[];
+    date: string;
+    slug: string;
+}
+const { title, description, tags, img, date, slug } = Astro.props;
+---
+
+<article class="max-w-[300px] rounded-lg h-auto bg-slate-950">
+    <a href={`/blog_de_adevsays/${slug}`}>
+        <div class="w-full">
+            <img
+                class="size-full object-contain rounded-lg rounded-b-none"
+                src={img}
+                alt={description}
+            />
+        </div>
+        <div class="p-4 pt-6">
+            <h3 class="text-white font-bold text-lg">{title}</h3>
+            <p class="text-base text-gray-600 my-2">{description}</p>
+        </div>
+    </a>
+
+    <footer class="flex justify-between p-4 pt-0">
+        <div class="flex items-center gap-2 m-0 p-0">
+            {
+                tags?.map((tag: string) => (
+                    <a class="text-sm text-yellow-400 hover:opacity-65">
+                        {tag}
+                    </a>
+                ))
+            }
+        </div>
+        <span class="flex justify-center items-center text-xs">{date}</span>
+    </footer>
+</article>

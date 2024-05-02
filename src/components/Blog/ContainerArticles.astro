@@ -1,0 +1,10 @@
+---
+import { getCollection } from "astro:content";
+import ArticleItem from "./ArticleItem.astro";
+const allCollection = await getCollection("articles");
+---
+<div class="mt-78">
+    {allCollection.map(({data}:any)=>(
+        <ArticleItem {...data}/>
+    ))}
+</div>

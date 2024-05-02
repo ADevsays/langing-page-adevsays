@@ -3,7 +3,9 @@ import Footer from "@components/UI/Footer/Footer.astro";
 import HeaderComponent from "@components/UI/Header/HeaderComponent.astro";
 import { ViewTransitions } from "astro:transitions";
 import '@fontsource-variable/onest';
-
+interface Props{
+    title:string, description:string
+}
 const {title, description} = Astro.props;
 ---
 
