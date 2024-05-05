@@ -4,11 +4,13 @@ const {img, title, description} = Astro.props;
 ---
 
 <Layout title={title} description={description}>
-	<main class="w-full flex flex-wrap min-h-screen">
+	<main class="w-full flex flex-wrap min-h-screen bg-gradient-to-br from-gray-950 to-black">
         <section class="pt-40 pb-6 lg:pb-20 w-full z-20 lg:px-[9rem] px-6 flex flex-col items-center justify-center gap-0 lg:gap-12 min-h-[550px]">
-            <article class="p prose dark:prose-invert w-full prose-img:rounded-lg prose-a:no-underline prose-h1:mt-6">
+            <article 
+                transition:name={`${title}-blog-item`}
+                class="prose dark:prose-invert w-full prose-img:rounded-lg prose-a:no-underline prose-h1:mt-6">
                 <img src={img} alt={description}>
-                <a id="back" href="/blog_de_adevsays">Volver atrás</a>
+                <a id="back" href="/blog">Volver atrás</a>
                 <slot/>
             </article>                
         </section>

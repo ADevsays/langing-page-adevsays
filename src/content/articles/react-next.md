@@ -2,7 +2,7 @@
 title: "¿Por qué NO DEBERÍAS usar React SIN NEXT JS?"
 slug: "usar-react-sin-next"
 img: "/content/web/react-next.webp"
-description: "Descubre cómo potenciar tu desarrollo web con React y Next.js. En este artículo, exploraremos las ventajas de estas tecnologías y cómo pueden mejorar la experiencia de usuario y el rendimiento de tu aplicación."
+description: "Descubre cómo potenciar tu desarrollo web con React y Next.js. En este artículo, exploraremos las ventajas de estas tecnologías"
 tags: ["React", "Desarrollo", "Next js"]
 date: "1/05/2024"
 ---

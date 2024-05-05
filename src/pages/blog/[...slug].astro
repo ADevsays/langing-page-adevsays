@@ -4,7 +4,6 @@ import { getCollection } from "astro:content";
 import ArticleLayout from "src/layouts/ArticleLayout.astro";
 const {slug} = Astro.params;
 
-
 export const getStaticPaths = (async () => {
     const collections = await getCollection("articles");
     return collections.map(({data}:any)=> ({params: {slug:data.slug}}))

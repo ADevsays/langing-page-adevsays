@@ -4,6 +4,11 @@
         "source": "/whitelist",
         "destination": "/newsletter",
         "permanent": true
+      },
+      {
+        "source": "/blog_de_adevsays",
+        "destination": "/blog",
+        "permanent": true
       }
     ]
   }

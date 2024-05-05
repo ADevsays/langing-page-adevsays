@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import ArticleItem from "./ArticleItem.astro";
 const allCollection = await getCollection("articles");
 ---
-<div class="mt-78">
+<div class="mt-8 lg:mt-0 flex gap-6 flex-wrap col-span-4 justify-center lg:justify-start">
     {allCollection.map(({data}:any)=>(
         <ArticleItem {...data}/>
     ))}

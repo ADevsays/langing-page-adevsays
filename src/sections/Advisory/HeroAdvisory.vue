@@ -20,7 +20,7 @@ const {handleClick} = useHandleOpenPayment();
 <template>
     <section class="pt-40 pb-6 lg:pb-20 w-full z-20 lg:px-[9rem] px-6 flex lg:flex-row flex-col items-start justify-start gap-0 lg:gap-12 min-h-[550px]">
         <div class="[background:radial-gradient(125%_125%_at_50%_10%,#030712_58%,#CC0E0E_120%)] md:min-w-full flex flex-col xl:flex-row gap-8 h-auto relative p-4 pb-12 px-5 pt-8 lg:top-0 lg:py-20 lg:px-12 top-[-50px] rounded-xl">
-            <aside class="pt-2 lg:max-w-[520px] object-contain aspect-video relative w-full draw-border ">
+            <aside class="pt-2 lg:max-w-[520px] aspect-video relative w-full draw-border ">
                 <img
                     ref="heroImg" 
                     id="img"
@@ -31,7 +31,7 @@ const {handleClick} = useHandleOpenPayment();
             <aside class="text-left w-fit">
                 <h1 class="font-bold text-2xl relative md:text-4xl lg:pt-0 lg:pb-0 pb-4 ">
                     Asesoría <span class="text-yellow-400">personal</span> con <span class="text-yellow-400">Adevsays</span>
-                    <Price class-name="absolute top-[38px] md:top-[10px] right-[4px] md:right-0  lg:right-[20px] lg:top-[-25px]"/>
+                    <Price class-name="absolute top-[38px] md:top-[10px] right-[4px] md:right-0  lg:right-[20px] lg:top-[-32px]"/>
                 </h1>
                 <div class="text-gray-300 text-sm text-pretty md:text-lg pt-6 pb-8 w-full">
                     <p>
@@ -70,8 +70,8 @@ const {handleClick} = useHandleOpenPayment();
         position: absolute;
         width: 0;
         height: 0;
-        bottom: 0;
-        right: 0;
+        bottom: -4px;
+        right: 2px;
     }
     .draw-border::before {
         border-bottom-width: 4px;
