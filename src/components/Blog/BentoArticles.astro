@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import ArticleItem from "./ArticleItem.astro";
+import BentoCol from "./BentoCol.astro";
+import HiddenDesktop from "./HiddenDesktop.vue";
+const allCollection = await getCollection("articles");
+const getItem = (index:number)=> allCollection[index].data;
+---
+
+<div class="mt-8 lg:mt-0 gap-0 xl:gap-6 col-span-4 grid grid-cols-1 lg:me-12 xl:grid-cols-3 place-content-center">
+    <div class="col-span-1">
+        <ArticleItem {...getItem(0)}/>
+        <HiddenDesktop item1={getItem(1)} item2={getItem(2)} client:load/>
+    </div>
+    <div class="col-span-3 xl:col-span-2 flex-col gap-8 hidden lg:flex mt-8 xl:mt-0">
+        <BentoCol {...getItem(1)}/>
+        <BentoCol {...getItem(2)}/> 
+    </div>
+</div>

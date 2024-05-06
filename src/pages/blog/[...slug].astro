@@ -3,14 +3,13 @@ import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import ArticleLayout from "src/layouts/ArticleLayout.astro";
 const {slug} = Astro.params;
-
 export const getStaticPaths = (async () => {
     const collections = await getCollection("articles");
-    return collections.map(({data}:any)=> ({params: {slug:data.slug}}))
+    return collections.map(({data})=> ({params: {slug:data.slug}}))
 }) satisfies GetStaticPaths;
 
 const collections = await getCollection("articles");
-const currentPost = collections.find((post:any)=> post.slug === slug);
+const currentPost = collections.find((post)=> post.slug === slug);
 if(!currentPost) return;
 const {Content} = await currentPost?.render();
 const {data} = currentPost;

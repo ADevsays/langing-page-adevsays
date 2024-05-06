@@ -1,0 +1,9 @@
+---
+const {sponsor, description} = Astro.props;
+---
+<aside class="w-full h-[200px] xl:px-[14rem] overflow-hidden rounded-lg">
+    <a href={sponsor[1]} target="_blank" rel="noreferrer nofollow" class="w-full max-h-full">
+        <img class="w-full max-h-full rounded-lg hover:rotate-1 hover:scale-[1.02] transition-all cursor-pointer object-cover object-top hover:brightness-125" 
+        src={`/banners/Banner_horizontal_${sponsor[0]}.webp`} alt={description}>
+    </a>
+</aside>

@@ -20,48 +20,51 @@ const links = [
 ---
 
 <script>
-    let isToggled = false;
-    const $ = (query:string) => document.querySelector(query);
-    const navlinks = $("#navlinks") as HTMLElement;
-    const hamburger = $("#hamburger") as HTMLElement;
-    const layer = $("#navLayer");
-    const containerNav = $("#container-nav");
-    const links = document.querySelectorAll('a');
-    function toggleNavlinks(isHamburger:boolean) {
-        if(!navlinks || !hamburger || !layer || !containerNav) return;
-        if (isToggled) {
-            navlinks.classList.add("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
-            hamburger.classList.add("toggled");
-            layer.classList.add("origin-top", "scale-y-100");
-            containerNav.classList.remove('absolute');
-            containerNav.classList.add('fixed');
-        } else {
-            setTimeout(()=>{
-                navlinks.classList.remove("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
-                hamburger.classList.remove("toggled");
-                layer.classList.remove("origin-top", "scale-y-100");
-                containerNav.classList.remove('fixed');
-                containerNav.classList.add('absolute');
-            }, isHamburger ? 0 : 350);
+    function setHeader(){
+        let isToggled = false;
+        const $ = (query:string) => document.querySelector(query);
+        const navlinks = $("#navlinks") as HTMLElement;
+        const hamburger = $("#hamburger") as HTMLElement;
+        const layer = $("#navLayer");
+        const containerNav = $("#container-nav");
+        const links = document.querySelectorAll('a');
+        function toggleNavlinks(isHamburger:boolean) {
+            if(!navlinks || !hamburger || !layer || !containerNav) return;
+            if (isToggled) {
+                navlinks.classList.add("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
+                hamburger.classList.add("toggled");
+                layer.classList.add("origin-top", "scale-y-100");
+                containerNav.classList.remove('absolute');
+                containerNav.classList.add('fixed');
+            } else {
+                setTimeout(()=>{
+                    navlinks.classList.remove("!visible", "!scale-100", "!opacity-100", "!lg:translate-y-0");
+                    hamburger.classList.remove("toggled");
+                    layer.classList.remove("origin-top", "scale-y-100");
+                    containerNav.classList.remove('fixed');
+                    containerNav.classList.add('absolute');
+                }, isHamburger ? 0 : 350);
+            }
         }
-    }
-    hamburger.addEventListener("click", () => {
-        isToggled = !isToggled;
-        toggleNavlinks(true);
-    });
-
-
-    links.forEach((link) => {
-        link.addEventListener("click", () => {
-            isToggled = false;
-            toggleNavlinks(false);
+        hamburger.addEventListener("click", () => {
+            isToggled = !isToggled;
+            toggleNavlinks(true);
         });
-    });
-    
+
+
+        links.forEach((link) => {
+            link.addEventListener("click", () => {
+                isToggled = false;
+                toggleNavlinks(false);
+            });
+        });
+    }
+ 
+    document.addEventListener("astro:page-load", setHeader)
 
 </script>
 
-<header transition:persist>
+<header>
     <nav id="container-nav" class="absolute z-30 w-full border-b border-black/5 dark:border-white/5 px-6 pt-4 xl:px-36">
         <div class="w-full">
             <div class="relative flex flex-wrap items-center justify-between gap-12 py-3 md:py-4">

@@ -9,29 +9,22 @@ interface Props {
 }
 const { title, description, tags, img, date, slug } = Astro.props;
 ---
-
 <div 
-    class="w-full rounded-lg h-auto bg-black hover:scale-[1.02] transition">
+    transition:name={`${title}-blog-item`}
+    style={`background-image:url(${img})`}
+    class="relative w-full h-1/2 bg-cover bg-no-repeat bg-center backdrop:bg-black bg-opacity-70 rounded-lg hover:scale-[1.02] transition">
+    <div class="absolute inset-0 rounded-lg bg-black bg-opacity-60 backdrop-filter -z-10"></div>
     <a href={`/blog/${slug}`}>
-        <div class="w-full overflow-hidden rounded-t-lg min-h-[120px]">
-            <img
-                transition:name={`${title}-blog-item`}
-                class="size-full min-h-[120px] object-contain rounded-lg rounded-b-none hover:rotate-2 hover:scale-110 transition-transform"
-                src={img}
-                alt={description}
-            />
-        </div>
         <div class="p-5 pt-8">
             <h3 class="text-white font-bold text-lg">
                 {title}
             </h3>
             <p 
-                class="text-base text-gray-400 my-2">
+                class="text-base text-gray-200 my-2">
                 {description}
             </p>
         </div>
     </a>
-
     <footer class="flex justify-between p-5 pt-0">
         <div class="flex items-center gap-2 m-0 p-0">
             {

@@ -17,3 +17,12 @@ interface TokenCoupon{
     token:string,
     price:string
 }
+
+interface ArticleBlog{
+    title:string;
+    description:string;
+    slug: string;
+    img: string;
+    tags: string[];
+    date: string;
+}

@@ -1,6 +1,6 @@
 export const ads = [
     {   
-        img: '_python3', 
+        img: '_python', 
         text:'Cupón Adevsays (30%)', 
         link: 'https://hotm.art/adevsays-python'
     },
