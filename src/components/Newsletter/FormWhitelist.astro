@@ -3,68 +3,71 @@ export const prerender = false;
 ---
 <script>
     import { changeClass } from "src/helpers/changeClass";
-    const form = document.querySelector('#form');
-    const input = document.querySelector("#email-input") as HTMLInputElement;
-    const loader = document.querySelector("#container-loader") as HTMLElement;
-    const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Muchas gracias por <span class="text-white">registrate a mi news letter</span>, espera noticias pronto!</h3>`;
-    const componentError = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Ups! <span class="text-blue-500">Parece que ya estás registrado.</span><br>¡Espera noticias pronto!</h3>`;
 
-    const close = ()=>{
-        const modal = document.querySelector('#formModal');
-        modal?.classList.add("hidden");       
-        modal?.classList.remove("flex");  
-    }
+    function main(){
+        const form = document.querySelector('#form');
+        const input = document.querySelector("#email-input") as HTMLInputElement;
+        const loader = document.querySelector("#container-loader") as HTMLElement;
+        const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Muchas gracias por <span class="text-white">registrate a mi news letter</span>, espera noticias pronto!</h3>`;
+        const componentError = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Ups! <span class="text-blue-500">Parece que ya estás registrado.</span><br>¡Espera noticias pronto!</h3>`;
 
-    const closeModal =(e?:Event)=>{
-        console.log("click")
-        if(!e) return;
-        if(e.target === form || !e.target) return;
-        if(form?.contains(e.target as Node)) return;
-        close();     
-    }
+        const close = ()=>{
+            const modal = document.querySelector('#formModal');
+            modal?.classList.add("hidden");       
+            modal?.classList.remove("flex");  
+        }
 
-    const assingCloseEvent=()=>{
-        const modal = document.querySelector('#formModal');
-        if(!modal) return;
-        modal?.addEventListener("click", closeModal);
-        window.addEventListener("keydown", (e)=>{
-            const key = e.key;
-            if(key === "Escape"){
-                closeModal(e);
-            }
-        })
+        const closeModal =(e?:Event)=>{
+            console.log("click")
+            if(!e) return;
+            if(e.target === form || !e.target) return;
+            if(form?.contains(e.target as Node)) return;
+            close();     
+        }
+
+        const assingCloseEvent=()=>{
+            const modal = document.querySelector('#formModal');
+            if(!modal) return;
+            modal?.addEventListener("click", closeModal);
+            window.addEventListener("keydown", (e)=>{
+                const key = e.key;
+                if(key === "Escape"){
+                    closeModal(e);
+                }
+            })
+            
+        }
+
+        assingCloseEvent();
+
+        const sendEmail= async(emailValue:string)=>{
+            if(!form) return;
+            changeClass(loader, "flex", "hidden");
+            console.log(emailValue)
+            input.classList.toggle("hidden");
+            document.querySelector(".email-icon")?.classList.toggle("hidden");
+            const res = await fetch("/api/post-email", {
+                method:'POST',
+                body:JSON.stringify({email:emailValue}),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            });
+            const response = await res.json();        
+            changeClass(loader, "hidden", "flex");
+            form.innerHTML = response.success ? componentSuccess : componentError;
+            setTimeout(() => {
+                window.location.reload();  
+            }, 3000);
+        }
         
-    }
-    assingCloseEvent();
-    document.addEventListener("astro:after-swap", assingCloseEvent);
-
-    const sendEmail= async(emailValue:string)=>{
-        if(!form) return;
-        changeClass(loader, "flex", "hidden");
-        console.log(emailValue)
-        input.classList.toggle("hidden");
-        document.querySelector(".email-icon")?.classList.toggle("hidden");
-        const res = await fetch("/api/post-email", {
-            method:'POST',
-            body:JSON.stringify({email:emailValue}),
-            headers:{
-                'Content-Type': 'application/json'
-            }
+        form?.addEventListener("submit", (e:Event)=>{
+            e.preventDefault();
+            sendEmail(input.value);
+            input.value = '';
         });
-        const response = await res.json();        
-        changeClass(loader, "hidden", "flex");
-        form.innerHTML = response.success ? componentSuccess : componentError;
-        setTimeout(() => {
-            window.location.reload();  
-        }, 3000);
     }
-    
-    form?.addEventListener("submit", (e:Event)=>{
-        e.preventDefault();
-        sendEmail(input.value);
-        input.value = '';
-    });
-
+    document.addEventListener("astro:page-load", main);
 </script>
 
 <div id="formModal" class="hidden fixed inset-0 z-[9999] size-full bg-black bg-opacity-90  justify-center items-center">
