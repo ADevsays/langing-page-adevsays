@@ -12,7 +12,7 @@ const { title, description, tags, img, date, slug } = Astro.props;
 <div 
     transition:name={`${title}-blog-item`}
     style={`background-image:url(${img})`}
-    class="relative w-full h-1/2 bg-cover bg-no-repeat bg-center backdrop:bg-black bg-opacity-70 rounded-lg hover:scale-[1.02] transition">
+    class="relative bg-cover bg-no-repeat bg-center backdrop:bg-black bg-opacity-70 rounded-lg hover:scale-[1.02] transition">
     <div class="absolute inset-0 rounded-lg bg-black bg-opacity-60 backdrop-filter -z-10"></div>
     <a href={`/blog/${slug}`}>
         <div class="p-5 pt-8">

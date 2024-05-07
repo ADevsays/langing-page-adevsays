@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 interface Props {
     title: string;
     img: string;
@@ -14,7 +15,9 @@ const { title, description, tags, img, date, slug } = Astro.props;
     class="w-full rounded-lg h-auto bg-black hover:scale-[1.02] transition">
     <a href={`/blog/${slug}`}>
         <div class="w-full overflow-hidden rounded-t-lg min-h-[120px]">
-            <img
+            <Image
+                width={300}
+                height={150}
                 transition:name={`${title}-blog-item`}
                 class="size-full min-h-[120px] object-contain rounded-lg rounded-b-none hover:rotate-2 hover:scale-110 transition-transform"
                 src={img}
