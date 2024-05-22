@@ -1,12 +1,20 @@
 ---
+import Articles from "@sections/Blog/Articles.astro";
+import Categories from "@sections/Blog/Categories.astro";
 import HeroBlog from "@sections/Blog/HeroBlog.astro";
+import { getCollection } from "astro:content";
+import sortedArticles from "src/helpers/sortedArticles";
 import Layout from "src/layouts/Layout.astro";
+const allCollection = await getCollection("articles");
+const sortedCollections = sortedArticles(allCollection);
 ---
 
 <Layout 
     title="Blog de Adevsays, creador de contenido y programador" 
     description="Aquí encontrarás contenido atrapante y actualizado del mundo del desarrollo web, software, desarrollo y tecnología en general.">
-	<main class="w-full flex flex-wrap min-h-screen bg-transparent">
+	<main class="w-full flex flex-wrap min-h-screen bg-gradient-to-br from-black/5 to-gray-950">
         <HeroBlog/>
+        <Categories/>
+        <Articles title="Para ti" isCategory={true} collections={sortedCollections}/>
     </main>
 </Layout>

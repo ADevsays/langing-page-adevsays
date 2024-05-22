@@ -1,17 +1,22 @@
 export const ads = [
     {   
-        img: '_python', 
+        img: 'python', 
         text:'Cupón Adevsays (30%)', 
         link: 'https://hotm.art/adevsays-python'
     },
     {
-        img: '_hacking', 
+        img: 'hacking', 
         text:'50% descuento desde este link', 
         link: 'https://hotm.art/adevsays-hacking'
     },
     {
-        img: '_notion', 
+        img: 'notion', 
         text:'Pruébalo gratis desde aquí', 
         link: 'https://affiliate.notion.so/adevsays-notion'
+    },
+    {
+        img: "conjunta-seo",
+        text: "Obtén un 15% de descuento aquí",
+        link: "https://conjuntasseo.com/adevsays"
     }
 ];

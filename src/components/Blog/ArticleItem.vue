@@ -14,7 +14,7 @@ const { item} = props;
 </script>
 <template>
     <div 
-        class="w-full rounded-lg h-auto bg-black hover:scale-[1.02] transition">
+        class="lg:w-full max-w-lg rounded-lg h-auto bg-black hover:scale-[1.02] transition">
         <a :href="`/blog/${item.slug}`">
             <div class="w-full overflow-hidden rounded-t-lg min-h-[120px]">
                 <img
@@ -37,7 +37,7 @@ const { item} = props;
 
         <footer class="flex justify-between p-5 pt-0">
             <div class="flex items-center gap-2 m-0 p-0">
-                <a v-for="tag in item.tags" class="text-sm text-yellow-400 hover:opacity-65">
+                <a v-for="tag in item.tags" :href="`/blog/categorias/${tag.toLowerCase()}`" class="text-sm text-yellow-400 hover:opacity-65 cursor-pointer">
                     {{tag}}
                 </a>
             </div>

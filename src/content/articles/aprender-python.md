@@ -3,8 +3,8 @@ title: "Saber PYTHON es OBLIGATORIO"
 slug: "aprender-python"
 img: "/content/web/aprender-python.webp"
 description: "El avance de la tecnología se encuentra en este lenguaje: Python. Datos, análisis, IA. Si no te quieres quedar atrás..."
-tags: ["Aprender", "IA", "Pyton"]
-date: "1/05/2024"
+tags: ["Aprender", "IA", "Python"]
+date: "05/01/2024"
 sponsor: ["python", "https://hotm.art/adevsays-python"]
 ---
 
@@ -34,6 +34,13 @@ La versatilidad de Python es otro factor clave. Con una amplia gama de bibliotec
 - **Gran Comunidad de Desarrolladores**: La comunidad de Python es activa y ofrece soporte, tutoriales y recursos abundantes.
 
 - **Compatibilidad Multiplataforma**: Python se ejecuta en diferentes sistemas operativos sin problemas.
+<br/>
+
+<a href="https://hotm.art/adevsays-python" target="_blank" rel="noreel nofollow">
+    <img alt="publicidad" src="/banners/content/python.webp"/>
+</a>
+
+<br/>
 
 ## Aplicaciones Prácticas de Python
 

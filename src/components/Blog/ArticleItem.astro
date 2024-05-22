@@ -12,7 +12,7 @@ const { title, description, tags, img, date, slug } = Astro.props;
 ---
 
 <div 
-    class="w-full rounded-lg h-auto bg-black hover:scale-[1.02] transition">
+    class="lg:max-w-full sm:max-w-lg rounded-lg h-auto bg-black hover:scale-[1.02] transition">
     <a href={`/blog/${slug}`}>
         <div class="w-full overflow-hidden rounded-t-lg min-h-[120px]">
             <Image
@@ -39,7 +39,7 @@ const { title, description, tags, img, date, slug } = Astro.props;
         <div class="flex items-center gap-2 m-0 p-0">
             {
                 tags?.map((tag: string) => (
-                    <a class="text-sm text-yellow-400 hover:opacity-65">
+                    <a class="text-sm text-yellow-400 hover:opacity-65 cursor-pointer" href={`/blog/categorias/${tag.toLowerCase()}`}>
                         {tag}
                     </a>
                 ))

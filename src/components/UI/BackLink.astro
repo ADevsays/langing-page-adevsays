@@ -1,0 +1,20 @@
+---
+interface Props{
+    className?: string
+}
+const {className} = Astro.props;
+---
+<button class={className} role="link" data-btn="back">
+    <slot/>
+</button>
+
+<script>
+    function setClick(){
+        const btn = document?.querySelector("[data-btn='back']");
+        if(!btn) return;
+        btn.addEventListener("click", ()=> {
+            history.back(); 
+        });
+    }
+    document.addEventListener("astro:page-load", setClick)
+</script>

@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+interface Props {
+    title: string;
+    img: string;
+    date: string;
+    slug: string;
+}
+const { title, img, date, slug } = Astro.props;
+---
+
+<a href={`/blog/${slug}`} class="transition-transform hover:scale-[1.01] cursor-pointer flex-1 py-3 gap-3 w-full lg:w-lg flex rounded-xl border-gray-800 border items-center h-full px-3">
+    <Image
+        width={300}
+        height={150}
+        class="w-28 h-20 rounded object-cover"
+        src={img}
+        alt={title}
+    />
+    <div>
+        <h3 class="text-white font-bold text-sm">
+            {title}
+        </h3>
+        <p class="text-xs text-gray-300">{date}</p>
+    </div>
+</a>

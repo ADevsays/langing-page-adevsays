@@ -3,8 +3,8 @@ title: "Cómo hacer SEO cuando usamos React"
 slug: "usar-react-sin-next"
 img: "/content/web/react-next.webp"
 description: "Descubre cómo potenciar tu desarrollo web y tener buenas prácticas SEO al trabajar con React"
-tags: ["React", "Next js", "SEO"]
-date: "1/05/2024"
+tags: ["React", "Next js", "SEO", "Web"]
+date: "05/01/2024"
 sponsor: ["python", "https://hotm.art/adevsays-python"]
 ---
 

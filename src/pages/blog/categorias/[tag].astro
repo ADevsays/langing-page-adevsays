@@ -1,0 +1,32 @@
+---
+import BackLink from "@components/UI/BackLink.astro";
+import Articles from "@sections/Blog/Articles.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "src/layouts/Layout.astro";
+const {tag} = Astro.params;
+
+export const getStaticPaths = (async () => {
+    const collections = await getCollection("articles");   
+    return collections.flatMap(({data})=> data.tags.map((tag:string)=> ({params: {tag: tag.toLowerCase()}})));
+}) satisfies GetStaticPaths;
+
+const filterCollections = (await getCollection("articles")).filter(collection=>{
+    const lowerTags = collection.data.tags.map((tag:string)=> tag.toLowerCase());
+    console.log(lowerTags)
+    return lowerTags.includes(tag);
+});
+---
+
+<Layout 
+    title="Blog de Adevsays, creador de contenido y programador" 
+    description="Aquí encontrarás contenido atrapante y actualizado del mundo del desarrollo web, software, desarrollo y tecnología en general.">
+	<main class="w-full flex flex-wrap min-h-screen bg-gradient-to-br from-black/5 to-gray-950">
+        <section class={`pt-40 pb-20 w-full z-20 lg:px-[9rem] px-0 gap-0 lg:gap-12 min-h-[550px]`}>
+           <Articles title={`Categoria ${tag}`} collections={filterCollections}/>
+           <div class="lg:px-[10rem] mb-20 px-12 w-full">
+                <BackLink>Volver atrás</BackLink>            
+           </div>
+        </section>
+    </main>
+</Layout>

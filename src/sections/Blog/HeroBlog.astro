@@ -1,13 +1,17 @@
 ---
 import ContainerMain from "@components/UI/ContainerMain.astro";
 import BentoArticles from "@components/Blog/BentoArticles.astro";
-import VerticalBannerads from "@components/Blog/VerticalBannerAds.astro";
+import VerticalBanner from "@components/Blog/VerticalBannerAds.astro";
+import HorizontalBannerAds from "@components/Blog/HorizontalBannerAds.astro";
 ---
 
-<ContainerMain className="flex flex-col bg-gradient-to-br from-black/5 to-gray-950">
+<ContainerMain className="flex flex-col mt-2 pt-0 pb-0">
     <h1 class="text-3xl font-bold">Últimos artículos por <span class="text-yellow-400">Adevsays</span></h1>
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-0 md:gap-6 place-content-center">
         <BentoArticles/>
-        <VerticalBannerads/>
+        <VerticalBanner/>
+    </div>
+    <div class="w-full px-0 block lg:hidden my-16">
+        <HorizontalBannerAds/>
     </div>
 </ContainerMain>

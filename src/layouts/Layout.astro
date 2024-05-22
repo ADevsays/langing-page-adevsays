@@ -23,7 +23,7 @@ const {title, description} = Astro.props;
         <!-- @ts-ignore -->
         <meta name='impact-site-verification' value='cd52caa2-9ce9-4426-b7dd-c9069346bc43'>
     </head>
-    <body>
+    <body class="dark text-white">
         <HeaderComponent/>
         <slot />
         <Footer />
@@ -35,7 +35,7 @@ const {title, description} = Astro.props;
 <style is:global>
     html {
         scroll-behavior: smooth;
-        color-scheme: light dark;
+        color-scheme: dark;
     }
 
     body {

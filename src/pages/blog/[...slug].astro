@@ -5,7 +5,7 @@ import ArticleLayout from "src/layouts/ArticleLayout.astro";
 const {slug} = Astro.params;
 export const getStaticPaths = (async () => {
     const collections = await getCollection("articles");
-    return collections.map(({data})=> ({params: {slug:data.slug}}))
+    return collections.map(({data})=> ({params: {slug:data.slug}}));
 }) satisfies GetStaticPaths;
 
 const collections = await getCollection("articles");

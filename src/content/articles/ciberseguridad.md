@@ -21,6 +21,14 @@ La autenticación de dos factores agrega una capa adicional de seguridad a tus c
 ## 3. Mantén tus Dispositivos Actualizados
 Las actualizaciones de software no solo agregan nuevas funciones, sino que también corrigen vulnerabilidades de seguridad conocidas. Mantén tus sistemas operativos, aplicaciones y software de seguridad actualizados para proteger tus dispositivos contra posibles ataques cibernéticos.
 
+<br/>
+
+<a href="https://hotm.art/adevsays-hacking" target="_blank" rel="noreel nofollow">
+    <img alt="publicidad" src="/banners/content/hacking.webp"/>
+</a>
+
+<br/>
+
 ## 4. Sé Cauteloso con los Correos Electrónicos y Mensajes
 El phishing es una técnica común utilizada por los hackers para obtener información confidencial, como contraseñas y datos financieros. Mantente alerta al abrir correos electrónicos y mensajes de remitentes desconocidos. No hagas clic en enlaces sospechosos ni descargues archivos adjuntos de fuentes no confiables.
 

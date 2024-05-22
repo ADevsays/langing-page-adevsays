@@ -1,0 +1,23 @@
+---
+import ArticleItemForYou from "@components/Blog/ArticleItemForYou.astro";
+interface Props{
+    collections: {data:any}[],
+    title:string,
+    isAside?: boolean, 
+    isCategory?: boolean
+}
+const {collections, title, isAside, isCategory} = Astro.props;
+const [upper, lower] = title.split(" ");
+const collectionUse = isCategory ? collections.slice(3) : collections;
+---
+
+<section class={`${!isAside ? "lg:px-[9rem] mb-20 px-12 w-full" : "w-full"}`}>
+    <h2 class="text-3xl font-bold mb-4">{upper} <span class="text-yellow-400">{lower}</span></h2>
+    <div class={`${!isAside ? "flex-col xl:flex-row" : "flex-col"} flex gap-4 `}>
+        {
+            collectionUse.map(item=>(
+                <ArticleItemForYou {...item.data}/>
+            ))
+        }
+    </div>
+</section>

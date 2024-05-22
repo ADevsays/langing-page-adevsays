@@ -7,8 +7,8 @@ const allCollection = await getCollection("articles");
 const getItem = (index:number)=> allCollection[index].data;
 ---
 
-<div class="mt-8 lg:mt-0 gap-0 xl:gap-6 col-span-4 grid grid-cols-1 lg:me-12 xl:grid-cols-3 place-content-center">
-    <div class="col-span-1">
+<div class="mt-8 lg:mt-0 gap-0 xl:gap-6 col-span-4 sm:grid grid-cols-1 lg:me-12 xl:grid-cols-3 place-content-center">
+    <div class="col-span-1 flex items-center flex-col">
         <ArticleItem {...getItem(0)}/>
         <HiddenDesktop item1={getItem(1)} item2={getItem(2)} client:only="vue"/>
     </div>

@@ -2,12 +2,13 @@
 import getBanner from "src/utils/getBannerAd"
 const {link, text, img} = getBanner(0);
 ---
-<aside class="w-full flex justify-center mx-auto mt-12 lg:mt-0 ">
+<aside class="lg:flex w-full hidden justify-center mx-auto mt-12 lg:mt-0">
     <a class="md:opacity-70 hover:brightness-100 md:hover:opacity-100 transition-opacity lg:max-h-[420px] max-w-[180px] lg:min-w-[220px]" target="_blank" rel="noreferrer nofollow" href={link}>
         <div class="w-full flex-col items-center justify-center relative h-full flex"> 
             <p class="absolute text-xs top-[-37px] xl:top-[-23px]">{text}</p>
-            <img class="object-cover rounded-lg size-full" src={`./banners/Banner${img}.webp`} alt={text}>
+            <img class="object-cover rounded-lg size-full" src={`./banners/vertical/${img}.webp`} alt={text}>
         </div>    
         <button class="font-bold text-xs p-1 px-2 rounded-lg text-gray-400 w-full text-center">Ver información</button>
     </a>    
 </aside>
+
