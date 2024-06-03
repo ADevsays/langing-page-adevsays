@@ -1,0 +1,24 @@
+---
+import CardProyect from "@components/Proyects/CardProyect.astro";
+import Book from "@icons/Book.astro";
+import Discord from "@icons/Discord.astro";
+---
+
+<section class="w-full xl:px-[19rem] px-20 pb-32 bg-gradient-to-br from-black to-black/20 flex justify-center items-center gap-6 flex-wrap">
+    <div class="flex-[1] md:flex-[0.8] mt-4 self-start">
+        <span class="text-gray-300">Mis productos</span>
+        <h2 class="font-bold text-2xl border-b-4 max-w-fit pb-2 border-yellow-400">ÚLTIMOS AGREGADOS</h2>
+        <p class="text-gray-200 text-sm mt-8">
+            Proyectos, productos, comunidades y más. Todo lo que puedes encontrar en Adevsays.com
+        </p>            
+    </div>
+    <div class="flex-1 mt-4 flex flex-col gap-12">
+        <CardProyect link=""  title="Comunidad exclusiva"  description="¿Eres un programador autodidacta y te cuesta conocer gente con tu misma pasión? Entra a mi comunidad y haz contactos para toda la vida.">
+            <Discord/>
+        </CardProyect>
+
+        <CardProyect link="/proyectos/libro"  title="Algoritmos a profundidad"  description="Mi libro digital donde cubro más de 30 algoritmos con explicaciones profundas en 3 lenguajes.">
+            <Book/>
+        </CardProyect>
+    </div>
+</section>

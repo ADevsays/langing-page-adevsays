@@ -16,7 +16,7 @@ onMounted(() => {
     const incrementCounter = () => {
         if (!props.maxCount) return;
         if (currentCount.value <= props.maxCount) {
-            currentCount.value += 7;
+            currentCount.value += 10;
             requestAnimationFrame(incrementCounter);
         }else{
             currentCount.value = props.maxCount;

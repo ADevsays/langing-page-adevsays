@@ -1,0 +1,11 @@
+---
+interface Props{
+    slug:string, text:string
+}
+const {slug, text} = Astro.props;
+---
+<div class="w-full flex justify-center mt-12">
+    <a href={slug} target="_blank" rel="nofollow noreferrer" class="p-2 rounded-lg bg-yellow-400 px-10 text-black font-semibold transition-transform hover:scale-[1.04]">
+        {text}
+    </a>    
+</div>

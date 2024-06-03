@@ -1,0 +1,49 @@
+---
+import Layout from "./Layout.astro";
+import BuyButton from "@components/Proyects/BuyButton.astro";
+import { Image } from "astro:assets";
+
+interface Props{
+    titlePage:string, 
+    descriptionPage:string,
+    title:string, 
+    description:string, 
+    warning:string,
+    img:string,
+    link: {slug:string, text:string}
+}
+const {titlePage, descriptionPage, title, description, warning, img, link} = Astro.props;
+
+const highlightText = (text:string)=> {
+  return text.replace(/\/(.*?)\//g, "<span class='text-yellow-400'>$1</span>");
+}
+
+const titleUse = highlightText(title);
+const warningUse = highlightText(warning);
+
+---
+
+<Layout title={titlePage} description={descriptionPage}>
+    <main class="w-full relative pt-32 md:pt-42 pb-20 min-h-[550px]" style="background-color: rgb(14 15 17);">
+        <section 
+            class="relative xl:px-[19rem] px-2 bg-top bg-no-repeat bg-cover"
+            style="background-image: url('https://wallpapercave.com/wp/wp12710119.jpg')">
+            <div class="bg-black opacity-40 absolute inset-0"></div>
+            <div class="relative z-20">
+                <h1 class="text-center font-bold text-2xl sm:text-3xl md:text-5xl text-balance mb-6 mt-12" set:html={titleUse}></h1>
+                <p class="text-center font-normal text-sm md:text-lg">{description}</p>
+                <div class="mt-8 w-full flex justify-center items-center">
+                    <Image class="max-w-[500px] min-w-[120px]" src={img} alt={description} width={500} height={600}/>
+                </div>
+                <p class="text-center font-normal text-gray-300">
+                    <small class="text-base" set:html={warningUse}></small>
+                </p>
+                <BuyButton {...link}/>
+            </div>
+
+        </section>
+        <div class="xl:px-[19rem] px-2">
+            <slot/>    
+        </div>
+    </main>
+</Layout>

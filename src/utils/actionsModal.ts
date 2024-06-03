@@ -32,8 +32,9 @@ export function closeModal(query:string){
     const modalToClose = document.querySelector(query);
     if(!modalToClose) return;
     changeClass(modalToClose, "hidden", "flex");
-    document.body.classList.toggle("h-[700px]");
-    document.body.classList.toggle("overflow-hidden");
+    document.body.classList.add("h-[700px]");
+    document.body.classList.remove("overflow-hidden");
+    console.log("Change height")
     if(query === "#modalCalendly") removeWidget();
 }
 

@@ -1,0 +1,27 @@
+---
+import NavButton from "@components/UI/Header/NavButton.vue";
+import Book from "@icons/Book.astro";
+import Discord from "@icons/Discord.astro";
+---
+
+<section class="w-full xl:px-[19rem] px-20 relative pt-32 md:pt-52 pb-20 min-h-[550px] bg-center bg-no-repeat bg-cover" style="background-image: url('/resources/proyects/Background img.webp')">
+    <div class="bg-black opacity-80 absolute inset-0"></div>
+    <div>
+        <div class="z-20 relative">
+            <p class="text-gray-300 md:text-left text-center">Descubre nuevas herramientas para potenciar tu carrera</p>
+            <h1 class="md:text-left text-center font-bold md:text-5xl text-3xl mt-6"><span class="text-yellow-400">Proyectos</span> de Adevsays</h1>
+            <div class="flex gap-6 mt-12 flex-wrap">
+                <NavButton link="" label="Únete a mi comunidad" color="blue">
+                    <Discord/>
+                </NavButton>
+                <NavButton link="/proyectos/libro" label="Compra mi libro" color="yellow">
+                    <Book/>
+                </NavButton>
+            </div>
+        </div>
+        
+        <aside class="absolute right-0 hidden xl:block" style="top: 120px; right: 22%;">
+            <img class="rounded-xl shadow-yellow-300 shadow object-contain max-w-[420px]" src={"./resources/proyects/Proyect-hero.webp"} alt="Imagen de Adevsays en alta resolución" />
+        </aside>
+    </div>
+</section>
