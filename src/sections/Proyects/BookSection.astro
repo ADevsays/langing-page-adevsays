@@ -1,7 +1,7 @@
 ---
 import BuyButton from "@components/Proyects/BuyButton.astro";
-import PillProyect from "@components/Proyects/PillProyect.astro";
 import buyButtons from "../../consts/buyButtons";
+import ContainerPillProyect from "@components/Proyects/ContainerPillProyect.astro";
 
 const characteristics = [
     {
@@ -32,13 +32,7 @@ const imgs = [1,2,3];
 
 ---
 
-<section>
-    <div class="flex gap-12 px-4 md:px-0 justify-center flex-wrap md:flex-nowrap">
-        {characteristics.map(pill=>(
-            <PillProyect {...pill}/>
-        ))}
-    </div>
-</section>
+<ContainerPillProyect pills={characteristics}/>
 
 <section class="px-4 md:px-0 text-gray-200">
     <h2 class="font-semibold text-3xl text-white">Resumen</h2>

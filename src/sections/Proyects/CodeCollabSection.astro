@@ -1,0 +1,123 @@
+---
+import BuyButton from "@components/Proyects/BuyButton.astro"
+import ContainerPillProyect from "@components/Proyects/ContainerPillProyect.astro"
+import buyButtons from "src/consts/buyButtons";
+
+const characteristics = [
+    {
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+              </svg>`,
+        title: "Trabaja con equipos reales",
+        description: "Mejorarás tus habilidades comunicativas, liderazgo y gestión de proyectos al trabajar con otros 3 desarrolladores."
+    },
+    {
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-window" viewBox="0 0 16 16">
+                  <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
+                  <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1M2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1z"/>
+                </svg>`,
+        title: "Crea aplicaciones usables",
+        description: "Nada de practicar con proyectos juguete, cada semana trabajaremos profundamente en proyectos para usuarios reales"
+    },
+    {
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                  <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2"/>
+                  <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0"/>
+                </svg>`,
+        title: "Participa en clubs",
+        description: "Nos interesa la socialización, por eso creamos espacios de convivencia como diferentes clubs para hacer contactos."
+    }
+]
+---
+
+<script>
+    const texts = {
+        lectura: "Cada semana se compartirán recursos literarios muy útiles para superar el nivel junior rápidamente. Después, se harán reuniones del club para disctutir estas lecturas y poder socializar sus opiniones.",
+        estudio: "Se comparirán ténicas de estudio para poder aprender temas más rápido y también se pueden evaluar rutas de aprendizaje para optar por la más efectiva.",
+        recursos: "En recursos se recopilarán diversos recursos gratuitos para poder acceder a ellos fácilmente. También se compartirá contenido exclusivo que solo es accesible para los integrantes del grupo."
+    } as any;
+
+    let currentText:string = "";
+
+    const setOperation = (el:Element)=>{
+        currentText = el?.getAttribute("data-btn-text") ?? "";
+        const btnResult = document.querySelector("#btn_result");
+        if(!btnResult) return;
+        btnResult.textContent = texts[currentText];
+    };
+
+    function main(){
+        const btns = document.querySelectorAll("[data-btn-text]");
+        if(!btns) return;
+        btns.forEach(btn=>{
+            btn.addEventListener("click", ()=> setOperation(btn));
+        })
+    }
+
+    document.addEventListener("astro:page-load", main);
+</script>
+
+<ContainerPillProyect pills={characteristics}/>
+
+<section>
+    <h2 class="font-semibold text-3xl text-white ">Haz contactos para toda la vida</h2>
+    <p>En <b>Code Collab Hub (CCH)</b> tenemos un objetivo simple: permitirle a nuestros usuarios crear lazos con otras personas con su misma pasión sin necesidad de salir de casa.</p>
+    <p>La programación es una habilidad bastante <b>especial</b>, porque es de las pocas que se pueden aprender (y ejercer) totalmente por tu cuenta.
+        Es bastante común conocer gente que no fue a la universidad y tampoco hizo un Bootcamp, pero sí aprendió de forma autodidacta.
+    </p>
+    <p>Ser autodidacta tiene algunas ventajas: horarios flexibles, temarios directos, rapidez. Pero también tiene una desventaja muy importante:  <b> la soledad. </b></p>
+    <p>Muchas personas que han ido a la Universidad comparten la misma idea: pese a sus problemas, vale la pena por los contactos que puedes hacer.
+        Y para nadie debería ser una sorpresa que se consigue trabajo por contactos antes que por suerte.
+    </p>
+</section>
+
+<section>
+    <h3>Clubs, equipos, recursos y más...</h3>
+    <p>Para fomentar la interacción natural entre los usuarios contamos con diferentes espacios.</p>
+    <p>Desde clubs de lectura con recursos de lectura nuevos cada semana, hasta espacios de difusión en diferentes temas del desarrollo.</p>
+    <div class="flex relative justify-center w-full">
+        <img class="max-w-[520px] w-full" src="/resources/proyects/discord/clubs.webp" alt="Imagen de la comunidad de Adevsays Code collab Hub">
+    </div>
+    <small class="block m-3 text-center">Más info</small>
+    <div class="flex justify-center gap-4 flex-wrap md:flex-nowrap mb-5">
+        <button data-btn-text="lectura" class="w-full border border-yellow-400 hover:bg-black rounded-lg text-center font-semibold p-2">Club de lectura</button>
+        <button data-btn-text="estudio" class="w-full border border-yellow-400 hover:bg-black rounded-lg text-center font-semibold p-2">Club de Estudio</button>
+        <button data-btn-text="recursos" class="w-full border border-yellow-400 hover:bg-black rounded-lg text-center font-semibold p-2">Recursos exclusivos</button>
+    </div>
+    <p class="mt-12" id="btn_result"></p>
+</section>
+
+<section>
+    <h3>Yo soy autodidacta</h3>
+    <p>Hola, soy Adevsays. Probablemente si llegaste aquí es porque me conoces, pero si no, te doy un breve resumen:
+        Llevo más de 4 años en el mundo de la programación y nunca fui a la Universidad, meramente por una decisión personal, además de que el estudio autodidacta se me da infinitamente mejor. </p>
+    
+    <img class="w-full max-w-[220px] float-right rounded-lg m-3" src="/resources/proyects/Proyect-hero.webp" alt="Imagen adaptable de Adevsays"/>
+    
+    <p>Luego de terminar mi ruta de estudios y ver que estaba preparado para conseguir un trabajo, me topé con una pared: no conocer a nadie.
+        Pese a que aplaudían mis habilidades técnicas, era notable mi falta de comunicación y sobre todo mi terrible habilidad para trabajar en equipo.
+        Claro, me había acostumbrado tanto tiempo a hacer proyectos solo (organización, gestión, back-end, front-end) todo lo hacía solo. Por lo que dar el salto a 
+        dejar que me ayuden o delegar tareas se me hizo complicado y me costó algunas malas experiencias.</p>
+    <p>Pensando en esto hace unos meses se me vino la idea de hacer Code Collab Hub, pensé que si en el tiempo de mi aprendizaje hubiera tenido un lugar para conocer, resolver dudas o simplemente recibir apoyo, dar el salto habría sido mucho más fácil.</p>
+
+    <p>Tomé todos esos problemas y traté de resolverlos de la mejor manera. Eso es Code Collab Hub, un espacio para practicar, aprender, conocer gente como tú y sentirte escuchado. </p>
+    <p>Así que si ya estás decido en unirte a esta increíble propuesta, dale al siguiente link.</p>
+    <BuyButton text="¡Sé parte de esta comunidad!" slug={buyButtons.discord}/>
+    <small class="block w-full text-center mt-12 text-gray-300">Disclaimer: los productos creados tratarán de ser complejos y desafiantes, pero no dejan de ser practicas. Si el equipo lo decide, pueden seguir trabajando en él y son libres de monetizarlo.</small>
+</section>
+
+
+<style>
+ 
+    section{
+        @apply w-full mt-20 px-4 md:px-0;
+    }
+
+    h3{
+        @apply font-semibold text-2xl text-white;
+    }
+
+    p{
+        @apply mt-3;
+    }
+</style>
