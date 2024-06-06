@@ -38,7 +38,7 @@ const haveBook = isBook(img);
                 <h1 class="text-center font-bold text-2xl sm:text-3xl md:text-5xl text-balance mb-6 mt-12" set:html={titleUse}></h1>
                 <p class="text-center font-normal text-sm md:text-lg">{description}</p>
                 <div class=`${haveBook ? "mt-8" : "my-20"} w-full flex justify-center items-center`>
-                    <Image class="max-w-[500px] min-w-[120px]" src={img} alt={description} width={500} height={600}/>
+                    <Image class="max-w-[500px] min-w-[120px] animate-fade-in-up animate-delay-300" src={img} alt={description} width={500} height={600}/>
                 </div>
                 <p class="text-center font-normal text-gray-300">
                     <small class="text-base" set:html={warningUse}></small>
