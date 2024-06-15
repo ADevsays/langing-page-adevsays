@@ -1,18 +1,22 @@
 ---
+import { ads } from "src/consts/affiliateLinks";
 import getBanner from "src/utils/getBannerAd";
 
 interface Props{
-    sponsor?: string[]
+    sponsor?: string
 }
 
 const {sponsor} = Astro.props;
 const {link, text, img} = getBanner(0);
-const linkUse = sponsor ? sponsor[1] : link;
-const imgUse = sponsor ? sponsor[0] : img;
+
+const { img: imgUse = img, 
+        link: linkUse = link, 
+        text: textUse = text } = ads.find(ad => ad.img === sponsor) || {};
+
 ---
 
 <a class="w-full opacity-70 hover:opacity-100 transition-opacity" href={linkUse} rel="noreferrer nofollow" target="_blank">
-    <p class="">{text}</p>
-    <img class="size-full object-contain" src={`/banners/horizontal/${imgUse}.webp`} alt={text}>
+    <p class="mb-3 font-medium">{textUse}</p>
+    <img class="size-full object-contain" src={`/banners/horizontal/${imgUse}.webp`} alt={textUse}>
     <button class="font-bold text-xs p-1 px-2 text-gray-400 w-full text-center">Ver información</button>
 </a>

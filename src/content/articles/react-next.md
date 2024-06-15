@@ -5,7 +5,7 @@ img: "/content/web/react-next.webp"
 description: "Descubre cómo potenciar tu desarrollo web y tener buenas prácticas SEO al trabajar con React"
 tags: ["React", "Next js", "SEO", "Web"]
 date: "05/01/2024"
-sponsor: ["python", "https://hotm.art/adevsays-python"]
+sponsor: "conjunta-seo"
 ---
 
 # Cómo se hace SEO cuando trabajamos con REACT

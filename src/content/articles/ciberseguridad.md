@@ -5,7 +5,7 @@ img: "/content/web/consejos-seguridad.webp"
 description: "En la era moderna, la privacidad es un lujo. Si no tenemos especial cuidado con ella, nuestros datos serán dispersados sin confirmación"
 tags: ["Web", "Hacking", "Seguridad"]
 date: "5/05/2024"
-sponsor: ["hacking", "https://hotm.art/adevsays-hacking"]
+sponsor: "datacamp"
 ---
 
 # Los 10 Principales Consejos de Ciberseguridad para Proteger tu Privacidad en Línea

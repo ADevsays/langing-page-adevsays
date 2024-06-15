@@ -5,9 +5,9 @@ export const ads = [
         link: 'https://hotm.art/adevsays-python'
     },
     {
-        img: 'hacking', 
-        text:'50% descuento desde este link', 
-        link: 'https://hotm.art/adevsays-hacking'
+        img: 'datacamp', 
+        text:'Aprende Ciencia de Datos', 
+        link: 'https://datacamp.pxf.io/adevsays'
     },
     {
         img: 'notion', 
@@ -20,3 +20,4 @@ export const ads = [
         link: "https://conjuntasseo.com/adevsays"
     }
 ];
+

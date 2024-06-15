@@ -5,6 +5,7 @@ import BackLink from "@components/UI/BackLink.astro";
 import { getCollection } from "astro:content";
 import Articles from "@sections/Blog/Articles.astro";
 import HorizontalBannerAds from "@components/Blog/HorizontalBannerAds.astro";
+import VerticalBannerAds from "@components/Blog/VerticalBannerAds.astro";
 import sortedArticles from "src/helpers/sortedArticles";
 const {img, title, description, sponsor} = Astro.props;
 const allCollection = await getCollection("articles");
@@ -16,22 +17,23 @@ const sortedCollections = sortedArticles(allCollection);
         <section class="pt-40 w-full z-20 lg:px-[9rem] px-6 flex items-start justify-center gap-0 lg:gap-12 min-h-[550px]">
             <article 
                 class="prose flex-1 dark:prose-invert w-full prose-a:text-blue-700 prose-img:rounded-lg prose-a:no-underline prose-h1:mt-6">
+                <BackLink>Volver atrás</BackLink>
+
                 <Image
                     class="max-h-[300px] object-cover object-top"
                     transition:name={`${title}-blog-item`}
                     src={img} alt={description}
                     height={300}
                     width={800}/>
-                <BackLink>Volver atrás</BackLink>
                 <slot/>
             </article>
             <aside class="flex-[0.3] w-full hidden lg:flex flex-col gap-12 justify-center">
                 <Articles isCategory={true} title="Post populares" collections={sortedCollections} isAside={true}/>
-                <HorizontalBannerAds sponsor={sponsor}/>               
+                <VerticalBannerAds sponsor={sponsor}/>             
             </aside>
         </section>
         <footer class="pb-40 mt-20 mb-0 w-full gap-12 flex flex-col justify-center">
-            <div class="lg:px-[9rem]  px-3">
+            <div class="lg:px-[20rem]  px-3">
                 <HorizontalBannerAds sponsor={sponsor}/>               
             </div>
             <Articles isCategory={true} title="Post populares" collections={sortedCollections}/>

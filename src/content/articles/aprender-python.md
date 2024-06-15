@@ -5,7 +5,7 @@ img: "/content/web/aprender-python.webp"
 description: "El avance de la tecnología se encuentra en este lenguaje: Python. Datos, análisis, IA. Si no te quieres quedar atrás..."
 tags: ["Aprender", "IA", "Python"]
 date: "05/01/2024"
-sponsor: ["python", "https://hotm.art/adevsays-python"]
+sponsor: "python"
 ---
 
 # Python: El Lenguaje Versátil para TODOS los Niveles

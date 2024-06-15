@@ -5,7 +5,7 @@ img: "/content/web/conjunta-seo.webp"
 description: "Aprende sobre el SEO y las herramientas al mejor precio que puedes usar para optimizar tu página."
 tags: ["SEO", "Web", "Aprender"]
 date: "05/19/2024"
-sponsor: ["conjunta-seo", "https://conjuntasseo.com/adevsays"]
+sponsor: "conjunta-seo"
 ---
 
 # La mejor herramienta para SEO
