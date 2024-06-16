@@ -1,4 +1,4 @@
 export default {
-    book: "https://go.hotmart.com/L92582057B?dp=1",
+    book: "https://pay.hotmart.com/X92565754V",
     discord: "https://whop.com/codecollab-hub/"
 }
