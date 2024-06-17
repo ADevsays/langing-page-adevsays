@@ -9,11 +9,12 @@ import ProductLayout from "src/layouts/ProductLayout.astro";
     descriptionPage="El libro más completo sobre algoritmos desarrollado por Adevsays y equipo"
     title="Conviértete en un /experto/ en /algoritmos/ con mi ebook"
     description="Supera al 99% de programadores en poco tiempo aprendiendo lo que la mayoría deja de lado"
-    warning="Más de /30 algoritmos/ con explicaciones y ejemplos en código solamente por /12$/"
+    warning="Más de /30 algoritmos/ con explicaciones y ejemplos en código solamente por /9.99$/"
     link={{
         text: "¡Comprar ahora!",
         slug: buyButtons.book
     }}
-    img="/resources/proyects/ebook/Ebook.webp">
+    img="/resources/proyects/ebook/Ebook.webp"
+    discount={["18", "9.99", "12"]}>
     <BookSection/>
 </ProductLayout>
