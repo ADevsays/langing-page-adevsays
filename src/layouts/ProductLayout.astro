@@ -1,6 +1,7 @@
 ---
 import Layout from "./Layout.astro";
 import BuyButton from "@components/Proyects/BuyButton.astro";
+import Discount from "@components/Proyects/Discount.astro";
 import { Image } from "astro:assets";
 
 interface Props{
@@ -44,14 +45,7 @@ const haveBook = isBook(img);
                 <h1 class="text-center font-bold text-2xl sm:text-3xl md:text-5xl text-balance mb-6 mt-12" set:html={titleUse}></h1>
                 <p class="text-center font-normal text-sm md:text-lg">{description}</p>
                 <div class=`${haveBook ? "mt-8" : "my-20"} relative w-full flex justify-center items-center`>
-                    <!-- sacar esto a un componente -->
-                    <div class=`${discount[0] ? "block" : "hidden"} top-3 right-[200px] absolute`>
-                        <div class="rotate-6 size-14 font-bold flex justify-center items-center rounded-full bg-red-600 text-white text-lg p-5">-{discount[0]}%</div>
-                        <span class=" line-through text-base absolute top-[40px] left-[-5px] block font-bold text-yellow-400 mt-5 rotate-6">{discount[2]}<span class="text-xs">$</span></span>
-                        <p class="absolute top-[60px] left-[-10px] text-3xl font-bold text-yellow-400 mt-5 rotate-6">{discount[1]}<span class="text-xl">$</span></p>
-                    </div>
-                    <!-- sacar esto a un componente -->
-
+                    <Discount discount={discount}/>
                     <Image class="max-w-[500px] min-w-[120px] animate-fade-in-up animate-delay-300" src={img} alt={description} width={500} height={600}/>
                 </div>
                 <p class="text-center font-normal text-gray-300">

@@ -1,0 +1,12 @@
+---
+interface Props{
+    discount: string[]
+}
+const {discount} = Astro.props;
+---
+
+<div class=`${discount[0] ? "block" : "hidden"} top-3 lg:right-[200px] right-[20px] absolute`>
+    <div class="rotate-6 size-14 font-bold flex justify-center items-center rounded-full bg-red-600 text-white text-lg p-5">-{discount[0]}%</div>
+    <span class=" line-through text-base absolute top-[40px] left-[-5px] block font-bold text-yellow-400 mt-5 rotate-6">{discount[2]}<span class="text-xs">$</span></span>
+    <p class="absolute top-[60px] left-[-10px] text-3xl font-bold text-yellow-400 mt-5 rotate-6">{discount[1]}<span class="text-xl">$</span></p>
+</div>
