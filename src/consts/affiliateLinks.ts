@@ -7,7 +7,7 @@ export const ads = [
     {
         img: 'datacamp', 
         text:'Aprende Ciencia de Datos', 
-        link: 'https://datacamp.pxf.io/adevsays'
+        link: 'https://datacamp.pxf.io/adevsays_es'
     },
     {
         img: 'notion', 
