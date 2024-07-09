@@ -1,0 +1,241 @@
+<lite-youtube class="mt-6" videoId="a7l8Jb7tJ3E"></lite-youtube>
+
+<script>
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-nocheck
+
+	/*
+	Component extracted from: https://github.com/paulirish/lite-youtube-embed/tree/master
+	*/
+
+	/**
+	 * A lightweight youtube embed. Still should feel the same to the user, just MUCH faster to initialize and paint.
+	 *
+	 * Thx to these as the inspiration
+	 *   https://storage.googleapis.com/amp-vs-non-amp/youtube-lazy.html
+	 *   https://autoplay-youtube-player.glitch.me/
+	 *
+	 * Once built it, I also found these:
+	 *   https://github.com/ampproject/amphtml/blob/master/extensions/amp-youtube (👍👍)
+	 *   https://github.com/Daugilas/lazyYT
+	 *   https://github.com/vb/lazyframe
+	 */
+	class LiteYTEmbed extends HTMLElement {
+		connectedCallback() {
+			const video = this.getAttribute("videoid")
+			this.videoId = video
+
+			this.addNoscriptIframe()
+			this.addEventListener("pointerover", LiteYTEmbed.warmConnections, { once: true })
+			this.addEventListener("click", this.activate.bind(this))
+			this.addEventListener("keydown", this.handleKeyPress.bind(this))
+
+			this.activate()
+			this.needsYTApi =
+				this.hasAttribute("js-api") ||
+				navigator.vendor.includes("Apple") ||
+				navigator.userAgent.includes("Mobi")
+		}
+
+		static addPrefetch(kind, url, as) {
+			const linkEl = document.createElement("link")
+			linkEl.rel = kind
+			linkEl.href = url
+			if (as) {
+				linkEl.as = as
+			}
+			document.head.append(linkEl)
+		}
+
+		static warmConnections() {
+			if (LiteYTEmbed.preconnected) return
+			LiteYTEmbed.addPrefetch("preconnect", "https://www.youtube-nocookie.com")
+			LiteYTEmbed.addPrefetch("preconnect", "https://www.google.com")
+			LiteYTEmbed.addPrefetch("preconnect", "https://googleads.g.doubleclick.net")
+			LiteYTEmbed.addPrefetch("preconnect", "https://static.doubleclick.net")
+			LiteYTEmbed.preconnected = true
+		}
+
+		fetchYTPlayerApi() {
+			if (window.YT || (window.YT && window.YT.Player)) return
+			this.ytApiPromise = new Promise((resolve, reject) => {
+				const el = document.createElement("script")
+				el.src = "https://www.youtube.com/iframe_api"
+				el.async = true
+				el.onload = (_) => {
+					YT.ready(resolve)
+				}
+				el.onerror = reject
+				this.append(el)
+			})
+		}
+
+		async getYTPlayer() {
+			if (!this.playerPromise) {
+				await this.activate()
+			}
+
+			return this.playerPromise
+		}
+
+		async addYTPlayerIframe() {
+			this.fetchYTPlayerApi()
+			await this.ytApiPromise
+
+			const videoPlaceholderEl = document.createElement("div")
+			this.append(videoPlaceholderEl)
+
+			const paramsObj = Object.fromEntries(this.getParams().entries())
+            paramsObj.autoPlay = 1;
+            paramsObj.loop = 1;
+
+			this.playerPromise = new Promise((resolve) => {
+				const player = new YT.Player(videoPlaceholderEl, {
+					width: "100%",
+					videoId: this.videoId,
+					playerVars: paramsObj,
+					events: {
+						onReady: (event) => {
+							event.target.playVideo()
+							resolve(player)
+						},
+					},
+				})
+			})
+		}
+
+		addNoscriptIframe() {
+			const iframeEl = this.createBasicIframe()
+			const noscriptEl = document.createElement("noscript")
+			noscriptEl.innerHTML = iframeEl.outerHTML
+			this.append(noscriptEl)
+		}
+
+		getParams() {
+			const params = new URLSearchParams(this.getAttribute("params") || [])
+			params.append("autoplay", "1")
+			params.append("playsinline", "1")
+			params.append("color", "white")
+			params.append("autoplay", "1")
+            params.append("loop", "1")
+			return params
+		}
+
+		async activate() {
+			if (this.classList.contains("lyt-activated")) return
+			
+			this.classList.add("lyt-activated")
+
+			if (this.style.backgroundImage !== "unset") {
+				this.style.backgroundImage = "unset"
+			}
+
+			if (this.needsYTApi) {
+				return this.addYTPlayerIframe(this.getParams())
+			}
+
+			const iframeEl = this.createBasicIframe()
+			this.append(iframeEl)
+            setTimeout(() => {
+                iframeEl.focus()
+                iframeEl.click()
+            }, 100);
+		}
+
+		handleKeyPress(event) {
+			if (event.code === "Enter" || event.code === "Space") {
+				this.activate()
+			}
+		}
+
+		createBasicIframe() {
+			const iframeEl = document.createElement("iframe")
+			iframeEl.width = 560
+			iframeEl.height = 315
+			iframeEl.title = this.playLabel
+			iframeEl.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			iframeEl.allowFullscreen = true
+			iframeEl.src = `https://www.youtube.com/embed/${encodeURIComponent(this.videoId)}?${this.getParams().toString()}`
+			return iframeEl
+		}
+
+		upgradePosterImage() {
+			setTimeout(() => {
+				const webpUrl = `https://i.ytimg.com/vi_webp/${this.videoId}/sddefault.webp`
+				const img = new Image()
+				img.fetchPriority = "low" 
+				img.referrerpolicy = "origin"
+				img.src = webpUrl
+				img.onload = (e) => {
+					const noAvailablePoster = e.target.naturalHeight === 90 && e.target.naturalWidth === 120
+					if (noAvailablePoster) return
+
+					this.style.backgroundImage = `url("${webpUrl}")`
+				}
+			}, 100)
+		}
+	}
+	customElements.define("lite-youtube", LiteYTEmbed)
+</script>
+
+<style is:global>
+	lite-youtube {
+		background-color: #000;
+		position: relative;
+		display: block;
+		contain: content;
+		background-position: center center;
+		background-size: cover;
+		cursor: pointer;
+		aspect-ratio: 16/9;
+		width: 100%;
+		height: auto;
+		border: 2px solid var(--color-accent);
+		transition: all 0.3s ease;
+		box-shadow: 0px 0px 15px rgb(212, 255, 0, 0.1);
+	}
+
+	lite-youtube::before {
+		content: attr(data-title);
+		display: block;
+		position: absolute;
+		top: 0;
+		background-image: linear-gradient(
+			180deg,
+			rgb(0 0 0 / 67%) 0%,
+			rgb(0 0 0 / 54%) 14%,
+			rgb(0 0 0 / 15%) 54%,
+			rgb(0 0 0 / 5%) 72%,
+			rgb(0 0 0 / 0%) 94%
+		);
+		height: 99px;
+		width: 100%;
+		font-family: "YouTube Noto", Roboto, Arial, Helvetica, sans-serif;
+		color: hsl(0deg 0% 93.33%);
+		text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+		font-size: 18px;
+		padding: 25px 20px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		box-sizing: border-box;
+	}
+
+	lite-youtube:hover::before {
+		color: white;
+	}
+
+	lite-youtube::after {
+		content: "";
+		display: block;
+		padding-bottom: calc(100% / (16 / 9));
+	}
+	lite-youtube > iframe {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border: 0;
+	}
+</style>

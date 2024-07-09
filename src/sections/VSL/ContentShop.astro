@@ -1,0 +1,77 @@
+---
+import BuyButton from "@components/VSL/BuyButton.astro";
+import WhatYouGet from "@components/VSL/YouGet.astro";
+import CardVSL from "@components/VSL/CardVSL.astro";
+import Check from "@icons/Check.astro";
+import buyButtons from "src/consts/buyButtons";
+---
+
+<script>
+    function main(){
+        const allContainer = document.querySelector("[data-container]");
+        setTimeout(()=>{
+            allContainer?.classList.remove("hidden")
+        }, 270000)
+    }
+    document.addEventListener("astro:page-load", main);
+</script>
+
+<section data-container="container" class="hidden">
+    <div class="w-full flex justify-center mt-12">
+        <a href={buyButtons.book} target="_blank" rel="noreferrer nofollo" class="bg-green-600 text-white font-semibold p-3 px-5 rounded-lg">Sí quiero el Ebook por $9.99 USD</a>
+    </div>
+    <h2 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black ">Adquiere mi Estrategia y Empieza a mejorar Diariamente</h2>
+    <div class="mt-8">
+        <img src="./resources/VSL-Book/first.webp" alt="">
+    </div>
+    <BuyButton>¡Quiero Mejorar mi Nivel!</BuyButton>
+    
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black">Gracias a Este Conocimiento, puedo asesorar a múltiples desarrolladores con estrategias Efectivas para Mejorar su Código casi en Automático...</h3>
+    <div class="mt-8">
+        <img src="./resources/VSL-Book/second.webp" alt="">
+    </div>
+    <BuyButton>¡Quiero Mejorar Diariamente!</BuyButton>
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black ">Pero no me creas a mí, ¡hay muchos usuarios que ya lo recomiendan!</h3>
+    <div class="mt-8">
+        <img src="./resources/VSL-Book/third.webp" alt="">
+    </div>
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black ">Este Ebook es perfecto para ti sí...</h3>
+    <div class="px-20 p-8">
+        <ul class="flex flex-col gap-12">
+            <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Si te gustaría mejorar tu nivel <b>exponencialmente cada día</b>.</li>
+            <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Sabes que tienes las capacidades pero te falta un concepto fundamental para resolver problemas algorítmicos</li>
+            <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Estás cansado de cursos/libros poco prácticos que no dan ejemplos funcionales en código</li>
+        </ul>
+    </div>
+    <BuyButton>¡Quiero Mejorar mi Nivel!</BuyButton>
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">¡Sí! Quiero acceso a:</h3>
+    <div class="mt-8">
+        <img src="./resources/VSL-Book/first.webp" alt="">
+    </div>
+    <h4 class="text-pretty mt-12 text-xl md:text-xl lg:text-2xl text-center w-full text-black ">Entiendo que tendré acceso inmediato:</h4>
+    <div>
+        <ul>
+            <li>
+                <CardVSL 
+                    title="Ebook Algoritmos - Valorado en $30 usd"
+                    img="./resources/proyects/ebook/Ebook.webp"
+                    description="Obtén ejemplos y descripciones detalladas de más de 30 algoritmos imprescindibles para tu carrera. Tanto para entrevistas técnicas como para tus tareas normales."/>
+            </li>
+            <li>
+                <CardVSL 
+                    title="Escribir commits correctamente - Valorado en $10 usd"
+                    img="./resources/proyects/ebook/Ebook commits.webp"
+                    description="Sigue una convención con tus commits que ayude a tu equipo. Descubre un sistema poco usado en habla hispana."/>
+            </li>
+            <li>
+                <CardVSL 
+                    title="Entrada seminario Grafos - Valorado en $20 usd"
+                    img="./resources/proyects/ebook/seminario.webp"
+                    description="Aprende grafos en vivo, con ejemplos prácticos, explicaciones detalladas y aplicaciones de algoritmos"/>
+            </li>
+        </ul>
+    </div>
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">Entonces, ¡Esto es lo que obtendrás!</h3>
+    <WhatYouGet/>
+    <BuyButton>¡Quiero obtener el Ebook!</BuyButton>
+</section>
