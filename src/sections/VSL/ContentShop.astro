@@ -17,7 +17,7 @@ import buyButtons from "src/consts/buyButtons";
     document.addEventListener("astro:page-load", main);
 </script>
 
-<section data-container="container" class="hidden">
+<section data-container="container" class="">
     <div class="w-full flex justify-center mt-12">
         <a href={buyButtons.book} target="_blank" rel="noreferrer nofollo" class="bg-green-600 text-white font-semibold p-3 px-5 rounded-lg">Sí quiero el Ebook por $9.99 USD</a>
     </div>
@@ -37,9 +37,9 @@ import buyButtons from "src/consts/buyButtons";
         <img src="./resources/VSL-Book/third.webp" alt="">
     </div>
     <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black ">Este Ebook es perfecto para ti sí...</h3>
-    <div class="px-20 p-8">
+    <div class="px-6 lg:px-20 p-8">
         <ul class="flex flex-col gap-12">
-            <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Si te gustaría mejorar tu nivel <b>exponencialmente cada día</b>.</li>
+            <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Si te gustaría mejorar tu nivel exponencialmente cada día.</li>
             <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Sabes que tienes las capacidades pero te falta un concepto fundamental para resolver problemas algorítmicos</li>
             <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Estás cansado de cursos/libros poco prácticos que no dan ejemplos funcionales en código</li>
         </ul>
@@ -72,7 +72,7 @@ import buyButtons from "src/consts/buyButtons";
             </li>
         </ul>
     </div>
-    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">Entonces, ¡Esto es lo que obtendrás!</h3>
+    <h3 class="text-pretty mt-20 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">Entonces, ¡Esto es lo que obtendrás!</h3>
     <WhatYouGet/>
     <BuyButton>¡Quiero obtener el Ebook!</BuyButton>
 </section>
