@@ -16,10 +16,17 @@ const time: Time = reactive({
     seconds: '00'
 });
 
-const getFutureTimeStamp =(date: string)=>new Date(date).getTime();
+const getFutureTimeStamp = () => {
+    const today = new Date();
+    
+    // Ajusta la fecha al día 22 del mes actual
+    const futureDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2);
+    
+    return futureDate.getTime();
+};
 
 onMounted(()=>{
-    const FUTURE_TIMESTAMP = getFutureTimeStamp("2024-08-22");    
+    const FUTURE_TIMESTAMP = getFutureTimeStamp();    
     const formatTime =(time:number)=>{
         return Math.floor(time).toString().padStart(2, "0");
     }
