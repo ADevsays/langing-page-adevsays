@@ -1,0 +1,72 @@
+---
+import ContainerMain from '@components/UI/ContainerMain.astro';
+import CountDown from '@components/Newsletter/CountDown.vue';
+import FormWhitelist from '@components/Newsletter/FormWhitelist.astro';
+---
+
+<script>
+
+    async function main(){
+        const openModal = ()=>{
+            const modal = document.querySelector('#formModal');
+            modal?.classList.remove("hidden");        
+            modal?.classList.add("flex");        
+        };
+
+        const assignClickEvent = () => {
+            const btn = document.querySelector("#openModal") as HTMLButtonElement;
+            if(!btn) return;
+            btn?.addEventListener("click", openModal);
+            btn.onclick = openModal;
+        }
+
+        assignClickEvent();
+        document.addEventListener("astro:after-swap", assignClickEvent);
+
+        await fetch("/api/get-connection-sheet"); 
+    }
+
+    document.addEventListener("astro:page-load", main);
+       
+</script>
+
+
+<ContainerMain className="flex flex-col justify-center items-center">
+    <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-20 -z-10">
+        <div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 "></div>
+        <div class="blur-[106px] h-48 bg-gradient-to-r from-cyan-400 to-indigo-600"></div>
+    </div>
+    <FormWhitelist 
+        title="¡Estoy listo para tener acceso a la guía!"
+        btnLabel= "RECIBIR"
+        mode="gift"
+        />
+    <section class="flex justify-center xl:gap-0 xl:justify-start flex-col lg:flex-row relative top-[-80px]">
+        <div class="flex-col  text-center flex justify-center items-center w-full ">
+            <div class="w-full flex justify-center mt-16">
+                <CountDown client:load/>
+            </div>
+            <div class="w-full md:max-w-[420px] h-42">
+                <img class="w-full object-cover" src="/resources/proyects/gifts/entrevistas.webp" alt="">
+            </div>
+            <h1 class="font-semibold text-xl md:text-2xl lg:text-3xl text-center uppercase animate-fade-in-up animate-delay-300">
+                RECIBE LA 
+                <span class="m-0 p-0 w-fit bg-gradient-to-r font-bold from-cyan-500 to-blue-500 text-transparent bg-clip-text">
+                    GUÍA
+                </span>
+                  TOTALMENTE
+                <span class="text-yellow-400">
+                    GRATIS
+                </span>
+            </h1> 
+            <h2 class="font-semibold my-4 text-gray-400 text-sm md:text-base max-w-[700px] animate-fade-in-up animate-delay-700">Regalaré esta guía por <span class="text-white font-bold">tiempo limitado</span></h2>
+            <p class="text-sm md:text-base">Compárteme tu <span class="text-yellow-400">email</span> para enviártela 👇</p>
+            <button 
+                id="openModal"
+                class="text-white animate-float animate-delay-800 pointer transition bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-br font-medium rounded-xl text-base px-6 py-3 text-center mt-4 md:mt-6">
+                Sí Quiero la Guía Gratis
+            </button> 
+        </div>
+    </section>
+    
+</ContainerMain> 

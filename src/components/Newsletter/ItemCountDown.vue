@@ -6,7 +6,7 @@ const props = defineProps<{
 </script>
 
 <template>
-    <div class="flex flex-col justify-center w-[100px]">
+    <div class="flex flex-col justify-center w-full text-sm md:w-[70px] md:text-base">
         <span class="tabular-nums">
             {{ props.time}}
         </span>

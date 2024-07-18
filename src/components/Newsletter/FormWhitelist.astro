@@ -1,14 +1,21 @@
 ---
+const {title, btnLabel, mode = "letter"} = Astro.props;
 export const prerender = false;
 ---
 <script>
     import { changeClass } from "src/helpers/changeClass";
 
     function main(){
-        const form = document.querySelector('#form');
+        const form = document.querySelector('#form') as HTMLFormElement;
+        const currentMode = form?.dataset.mode;
         const input = document.querySelector("#email-input") as HTMLInputElement;
         const loader = document.querySelector("#container-loader") as HTMLElement;
-        const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Muchas gracias por <span class="text-white">registrate a mi news letter</span>, espera noticias pronto!</h3>`;
+        const successText = 
+            currentMode === "letter" ? 
+                `¡Muchas gracias por <span class="text-white">registrate a mi news letter</span>, espera noticias pronto!`:
+                "Gracias, recibirás tu guía en breve";
+
+        const componentSuccess = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">${successText}</h3>`;
         const componentError = `<h3 class="my-6 mt-8 w-full font-semibold text-gray-300 text-2xl text-center">¡Ups! <span class="text-blue-500">Parece que ya estás registrado.</span><br>¡Espera noticias pronto!</h3>`;
 
         const close = ()=>{
@@ -18,7 +25,7 @@ export const prerender = false;
         }
 
         const closeModal =(e?:Event)=>{
-            console.log("click")
+            console.log(currentMode)
             if(!e) return;
             if(e.target === form || !e.target) return;
             if(form?.contains(e.target as Node)) return;
@@ -40,10 +47,13 @@ export const prerender = false;
 
         assingCloseEvent();
 
+        const openWebsite = ()=>{
+            window.open("https://drive.google.com/file/d/12jCsMTwHVV4LR7qGNhxxW1IgW6ZTua5h/view?usp=drive_link", "_blank");
+        }
+
         const sendEmail= async(emailValue:string)=>{
             if(!form) return;
             changeClass(loader, "flex", "hidden");
-            console.log(emailValue)
             input.classList.toggle("hidden");
             document.querySelector(".email-icon")?.classList.toggle("hidden");
             const res = await fetch("/api/post-email", {
@@ -56,8 +66,10 @@ export const prerender = false;
             const response = await res.json();        
             changeClass(loader, "hidden", "flex");
             form.innerHTML = response.success ? componentSuccess : componentError;
+
             setTimeout(() => {
-                window.location.reload();  
+                if(currentMode === "letter") window.location.reload();
+                else openWebsite();
             }, 3000);
         }
         
@@ -71,8 +83,8 @@ export const prerender = false;
 </script>
 
 <div id="formModal" class="hidden fixed inset-0 z-[9999] size-full bg-black bg-opacity-90  justify-center items-center">
-    <form id="form" class="bg-gradient-to-br pb-12 flex items-center w-[90%] flex-col p-6 rounded-xl gap-4 md:max-w-[600px]">  
-        <h3 class="my-6 w-full font-bold text-gray-300 text-xl text-center">¡Comparte tu correo para inscribirte a mi <span class="text-white">News Letter </span> y recibir beneficios exclusivos!</h3>
+    <form data-mode={mode}  id="form" class="bg-gradient-to-br pb-12 flex items-center w-[90%] flex-col p-6 rounded-xl gap-4 md:max-w-[600px]">  
+        <h3 class="my-6 w-full font-bold text-gray-300 text-xl text-center">{title}</h3>
         <label for="simple-search" class="sr-only">Search</label>
         <div class="relative w-full">
             <div class="email-icon absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -84,7 +96,7 @@ export const prerender = false;
             <input type="email" id="email-input" name="email" class="bg-gray-50 py-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ejemplo@gmail.com" required />
         </div>
         <button type="submit" class="p-3 px-8 ms-2 mt-6 text-sm font-semibold bg-blue-700 rounded-lg  hover:bg-blue-800 dark:bg-blue-700 dark:hover:bg-blue-600 text-white w-full">
-            ¡INSCRIBIRSE!
+            {btnLabel}
         </button>
     </form>
 </div>
@@ -94,19 +106,19 @@ export const prerender = false;
         color: peru;
     }
     .loader {
-    width: 50px;
-    padding: 5px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: rgb(29 78 216);
-    --_m: 
-        conic-gradient(#0000 10%,#000),
-        linear-gradient(#000 0 0) content-box;
-    -webkit-mask: var(--_m);
-            mask: var(--_m);
-    -webkit-mask-composite: source-out;
-            mask-composite: subtract;
-    animation: l3 1s infinite linear;
+        width: 50px;
+        padding: 5px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: rgb(29 78 216);
+        --_m: 
+            conic-gradient(#0000 10%,#000),
+            linear-gradient(#000 0 0) content-box;
+        -webkit-mask: var(--_m);
+                mask: var(--_m);
+        -webkit-mask-composite: source-out;
+                mask-composite: subtract;
+        animation: l3 1s infinite linear;
     }
     @keyframes l3 {to{transform: rotate(1turn)}}
 </style>
