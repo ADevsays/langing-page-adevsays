@@ -1,15 +1,20 @@
+---
+interface Props{
+    products:string[],
+    normalPrice:string, 
+    realPrice:string
+}
+const {products, normalPrice, realPrice} = Astro.props;
+---
+
 <div class="text-center m-3 mt-6 p-5 rounded-xl border-dashed border-4 border-green-600 flex flex-col justify-center items-center">
     <ul>
-        <li>
-            <h4 class="font-bold text-2xl text-center">Algoritmos a Profundidad....... (Valorado en $30 usd)</h4>
-        </li>
-        <li>
-            <h4 class="font-bold text-2xl text-center my-4">Escribir commits correctamente.... (Valorado en $10 usd)</h4>
-        </li>
-        <li>
-            <h4 class="font-bold text-2xl text-center">Seminario grafos....... (Valorado en $320 usd)</h4>
-        </li>
+        {products.map(product=> (
+            <li>
+                <h4 class="font-bold text-2xl text-center">{product}</h4>
+            </li>
+        ))}
     </ul>
-    <h3 class="mt-6 font-semibold text-gray-500 text-3xl">TODO ESTO VALORADO EN: <span class=" line-through">$60</span></h3>
-    <h4 class="text-4xl font-bold text-green-500 mt-4">SOLO POR HOY: $9.99 USD</h4>
+    <h3 class="mt-6 font-semibold text-gray-500 text-3xl">TODO ESTO VALORADO EN: <span class=" line-through">${normalPrice}</span></h3>
+    <h4 class="text-4xl font-bold text-green-500 mt-4">SOLO POR HOY: ${realPrice} USD</h4>
 </div>

@@ -1,0 +1,62 @@
+---
+import BuyButton from "@components/VSL/BuyButton.astro";
+import WhatYouGet from "@components/VSL/YouGet.astro";
+import Check from "@icons/Check.astro";
+import buyButtons from "src/consts/buyButtons";
+---
+
+<script>
+    function main(){
+        const allContainer = document.querySelector("[data-container]");
+        setTimeout(() => {
+            allContainer?.classList.remove("hidden");
+        }, 100000);
+    }
+    main();
+    document.addEventListener("astro:page-load", main);
+</script>
+
+<section data-container="container" class="hidden">
+    <div class="w-full flex justify-center mt-12">
+        <a href={buyButtons.discord} target="_blank" rel="noreferrer nofollo" class="bg-green-600 text-white font-semibold p-3 px-5 rounded-lg">Sí quiero suscribirme por $2.5</a>
+    </div>
+    <h2 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black ">Entra en la comunidad y conoce a gente como tú</h2>
+    <div class="mt-8">
+        <img src="./resources/VSL-Comunity/first.webp" alt="">
+    </div>
+    <BuyButton link={buyButtons.discord}>¡Quiero practicar con Equipos reales!</BuyButton>
+    
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black">Ya hay Decenas de Programadores dentro Mejorando Constantemente...</h3>
+    <div class="mt-8">
+        <img src="./resources/VSL-Comunity/second.webp" alt="">
+    </div>
+    <BuyButton link={buyButtons.discord}>¡Quiero Practicar con proyectos Reales!</BuyButton>
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black ">Pero no me creas a mí, ¡hay muchos usuarios que ya lo recomiendan!</h3>
+    <div class="mt-8">
+        <img src="./resources/VSL-Comunity/third.webp" alt="">
+    </div>
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black ">Esta Comunidad es Perfecta para ti si... </h3>
+    <div class="px-6 lg:px-20 p-8">
+        <ul class="flex flex-col gap-12">
+            <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Si te gustaría participar en un entorno más real.</li>
+            <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Sabes lo importante que es el trabajo en equipo pero no tienes con quién practicarlo.</li>
+            <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Quieres un lugar para hacer contactos y buenos amigos con tus mismos intereses.</li>
+        </ul>
+    </div>
+    <BuyButton link={buyButtons.discord}>¡Quiero mejorar Mi nivel!</BuyButton>
+    <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">¡Sí! Quiero acceso a:</h3>
+    <div class="mt-8">
+        <img src="./resources/VSL-Comunity/first.webp" alt="">
+    </div>
+    <BuyButton link={buyButtons.discord}>¡Quiero mejorar Mi nivel!</BuyButton>
+    <h3 class="text-pretty mt-20 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">Entonces, ¡Esto es lo que obtendrás!</h3>
+    <WhatYouGet 
+        realPrice="2.5"
+        normalPrice="22"
+        products={[
+            "Ingreso a CodeCollab ....... (Valorado en $10 usd)",
+            "Seminarios, recursos ....... (Valorado en $12 usd)",
+            "Equipos y proeyctos ....... Invaluable",
+        ]}/>
+    <BuyButton link={buyButtons.discord}>¡Quiero practicar con proyectos reales!</BuyButton>
+</section>

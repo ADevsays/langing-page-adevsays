@@ -17,7 +17,7 @@ import buyButtons from "src/consts/buyButtons";
     document.addEventListener("astro:page-load", main);
 </script>
 
-<section data-container="container" class="hidden">
+<section data-container="container" class="">
     <div class="w-full flex justify-center mt-12">
         <a href={buyButtons.book} target="_blank" rel="noreferrer nofollo" class="bg-green-600 text-white font-semibold p-3 px-5 rounded-lg">Sí quiero el Ebook por $9.99 USD</a>
     </div>
@@ -25,13 +25,13 @@ import buyButtons from "src/consts/buyButtons";
     <div class="mt-8">
         <img src="./resources/VSL-Book/first.webp" alt="">
     </div>
-    <BuyButton>¡Quiero Mejorar mi Nivel!</BuyButton>
+    <BuyButton link={buyButtons.book}>¡Quiero Mejorar mi Nivel!</BuyButton>
     
     <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black">Gracias a Este Conocimiento, puedo asesorar a múltiples desarrolladores con estrategias Efectivas para Mejorar su Código casi en Automático...</h3>
     <div class="mt-8">
         <img src="./resources/VSL-Book/second.webp" alt="">
     </div>
-    <BuyButton>¡Quiero Mejorar Diariamente!</BuyButton>
+    <BuyButton link={buyButtons.book}>¡Quiero Mejorar Diariamente!</BuyButton>
     <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black ">Pero no me creas a mí, ¡hay muchos usuarios que ya lo recomiendan!</h3>
     <div class="mt-8">
         <img src="./resources/VSL-Book/third.webp" alt="">
@@ -44,7 +44,7 @@ import buyButtons from "src/consts/buyButtons";
             <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Estás cansado de cursos/libros poco prácticos que no dan ejemplos funcionales en código</li>
         </ul>
     </div>
-    <BuyButton>¡Quiero Mejorar mi Nivel!</BuyButton>
+    <BuyButton link={buyButtons.book}>¡Quiero Mejorar mi Nivel!</BuyButton>
     <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">¡Sí! Quiero acceso a:</h3>
     <div class="mt-8">
         <img src="./resources/VSL-Book/first.webp" alt="">
@@ -73,6 +73,13 @@ import buyButtons from "src/consts/buyButtons";
         </ul>
     </div>
     <h3 class="text-pretty mt-20 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">Entonces, ¡Esto es lo que obtendrás!</h3>
-    <WhatYouGet/>
-    <BuyButton>¡Quiero obtener el Ebook!</BuyButton>
+    <WhatYouGet 
+        realPrice="9.99"
+        normalPrice="60"
+        products={[
+            "Algoritmos a Profundidad....... (Valorado en $30 usd)",
+            "Escribir commits correctamente.... (Valorado en $10 usd)",
+            "Seminario grafos....... (Valorado en $320 usd)"
+        ]}/>
+    <BuyButton link={buyButtons.book}>¡Quiero obtener el Ebook!</BuyButton>
 </section>
