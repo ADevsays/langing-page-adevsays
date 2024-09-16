@@ -1,10 +1,11 @@
 ---
 interface Props{
-    link:string
+    link:string,
+    colorBase:string
 }
-const {link} = Astro.props;
+const {link, colorBase} = Astro.props;
 
 ---
 <div class="w-full flex justify-center my-8">
-    <a href={link} target="_blank" rel="noreferrer nofollo" class="text-lg font-bold bg-green-600 text-white p-5 px-5 rounded-lg"><slot/></a href={buyButtons}>
+    <a href={link} target="_blank" rel="noreferrer nofollo" class=`text-lg font-bold text-center ${colorBase} text-white p-5 px-5 rounded-lg`><slot/></a href={buyButtons}>
 </div>

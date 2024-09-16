@@ -21,9 +21,16 @@ const {title, description} = Astro.props;
         <meta name='impact-site-verification' value='cd52caa2-9ce9-4426-b7dd-c9069346bc43'>
     </head>
     <body class="bg-gray-200 text-black">
-        <slot />
+        <div class="w-full flex justify-center mt-4">
+            <div class="bg-gray-200 w-full lg:w-1/2">
+                <main class="rounded-xl bg-white p-6 lg:p-6 lg:py-12">
+                    <slot />
+                </main>
+            <footer class="text-xs m-2 mt-10 text-center text-gray-800">
+                © 2024 Adevsays. <br>
+                Descargo de Responsabilidad: Este producto no garantiza la obtención de resultados. Las referencias al desempeño de una determinada estrategia no debe ser interpretada como una garantía de resultados. Esta página no es parte de la página de Meta o de Meta, Inc.
+            </footer>
     </body>
-
 </html>
 
 

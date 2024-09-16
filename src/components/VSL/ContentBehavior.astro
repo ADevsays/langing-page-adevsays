@@ -1,0 +1,48 @@
+---
+import buyButtons from "src/consts/buyButtons";
+
+interface Props{
+    colorFirstBtn:string, 
+    labelFirstBtn:string
+}
+
+const {colorFirstBtn, labelFirstBtn} = Astro.props;
+
+---
+
+<script>
+import { changeClass } from "src/helpers/changeClass";
+
+    function main(){
+        const allContainer = document.querySelector("[data-container]");
+        const prevBtn = document.querySelector("[data-prev-btn]");
+
+        setTimeout(() => {
+            changeClass(prevBtn as Element, "flex", "hidden");
+        }, 21000);
+
+        setTimeout(() => {
+            allContainer?.classList.remove("hidden");
+            prevBtn?.classList.add("hidden");
+        }, 100000);
+    }
+    main();
+    document.addEventListener("astro:page-load", main);
+    document.addEventListener("DOMContentLoaded", main);
+</script>
+
+<div
+    data-prev-btn
+    class="w-full justify-center mt-12 hidden">
+    <a href={buyButtons.discord} 
+        target="_blank" 
+        class=`${colorFirstBtn} text-white font-semibold p-3 px-5 rounded-lg`
+        rel="noreferrer nofollow"
+        >{labelFirstBtn}</a> 
+</div>
+
+<section data-container="container" class="hidden">
+    <slot/>
+</section>
+
+

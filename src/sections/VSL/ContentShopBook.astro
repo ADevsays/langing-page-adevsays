@@ -4,20 +4,11 @@ import WhatYouGet from "@components/VSL/YouGet.astro";
 import CardVSL from "@components/VSL/CardVSL.astro";
 import Check from "@icons/Check.astro";
 import buyButtons from "src/consts/buyButtons";
+import ContentBehavior from "@components/VSL/ContentBehavior.astro";
 ---
-
-<script>
-    function main(){
-        const allContainer = document.querySelector("[data-container]");
-        setTimeout(()=>{
-            allContainer?.classList.remove("hidden")
-        }, 100000)
-    }
-    main();
-    document.addEventListener("astro:page-load", main);
-</script>
-
-<section data-container="container" class="hidden">
+<ContentBehavior 
+    colorFirstBtn="bg-green-600"
+    labelFirstBtn="Sí quiero el Ebook por $9.99">
     <div class="w-full flex justify-center mt-12">
         <a href={buyButtons.book} target="_blank" rel="noreferrer nofollo" class="bg-green-600 text-white font-semibold p-3 px-5 rounded-lg">Sí quiero el Ebook por $9.99 USD</a>
     </div>
@@ -25,13 +16,17 @@ import buyButtons from "src/consts/buyButtons";
     <div class="mt-8">
         <img src="./resources/VSL-Book/first.webp" alt="">
     </div>
-    <BuyButton link={buyButtons.book}>¡Quiero Mejorar mi Nivel!</BuyButton>
+    <BuyButton 
+        colorBase="bg-green-600"
+        link={buyButtons.book}>¡Quiero Mejorar mi Nivel!</BuyButton>
     
     <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black">Gracias a Este Conocimiento, puedo asesorar a múltiples desarrolladores con estrategias Efectivas para Mejorar su Código casi en Automático...</h3>
     <div class="mt-8">
         <img src="./resources/VSL-Book/second.webp" alt="">
     </div>
-    <BuyButton link={buyButtons.book}>¡Quiero Mejorar Diariamente!</BuyButton>
+    <BuyButton 
+        colorBase="bg-green-600"
+        link={buyButtons.book}>¡Quiero Mejorar Diariamente!</BuyButton>
     <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-3xl font-bold text-center w-full text-black ">Pero no me creas a mí, ¡hay muchos usuarios que ya lo recomiendan!</h3>
     <div class="mt-8">
         <img src="./resources/VSL-Book/third.webp" alt="">
@@ -44,7 +39,9 @@ import buyButtons from "src/consts/buyButtons";
             <li class="text-lg font-medium flex gap-2 items-center"> <span class="text-green-600"><Check/></span> Estás cansado de cursos/libros poco prácticos que no dan ejemplos funcionales en código</li>
         </ul>
     </div>
-    <BuyButton link={buyButtons.book}>¡Quiero Mejorar mi Nivel!</BuyButton>
+    <BuyButton 
+        colorBase="bg-green-600"
+        link={buyButtons.book}>¡Quiero Mejorar mi Nivel!</BuyButton>
     <h3 class="text-pretty mt-12 text-xl md:text-xl lg:text-4xl font-bold text-center w-full text-black">¡Sí! Quiero acceso a:</h3>
     <div class="mt-8">
         <img src="./resources/VSL-Book/first.webp" alt="">
@@ -81,5 +78,7 @@ import buyButtons from "src/consts/buyButtons";
             "Escribir commits correctamente.... (Valorado en $10 usd)",
             "Seminario grafos....... (Valorado en $320 usd)"
         ]}/>
-    <BuyButton link={buyButtons.book}>¡Quiero obtener el Ebook!</BuyButton>
-</section>
+    <BuyButton 
+        colorBase="bg-green-600"
+        link={buyButtons.book}>¡Quiero obtener el Ebook!</BuyButton>
+</ContentBehavior>
