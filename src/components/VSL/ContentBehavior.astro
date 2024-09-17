@@ -3,10 +3,11 @@ import buyButtons from "src/consts/buyButtons";
 
 interface Props{
     colorFirstBtn:string, 
-    labelFirstBtn:string
+    labelFirstBtn:string,
+    link:string
 }
 
-const {colorFirstBtn, labelFirstBtn} = Astro.props;
+const {colorFirstBtn, labelFirstBtn, link} = Astro.props;
 
 ---
 
@@ -34,7 +35,7 @@ import { changeClass } from "src/helpers/changeClass";
 <div
     data-prev-btn
     class="w-full justify-center mt-12 hidden">
-    <a href={buyButtons.discord} 
+    <a href={link} 
         target="_blank" 
         class=`${colorFirstBtn} text-white font-semibold p-3 px-5 rounded-lg`
         rel="noreferrer nofollow"

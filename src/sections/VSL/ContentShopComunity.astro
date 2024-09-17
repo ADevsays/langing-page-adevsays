@@ -12,7 +12,8 @@ interface Props{
 const { colorBase } = Astro.props;
 ---
 
-<ContentBehavior 
+<ContentBehavior
+    link={buyButtons.discord}
     labelFirstBtn="Sí quiero suscribirme por solo $2.5"
     colorFirstBtn="bg-orange-500">
     <div class={`${colorBase} flex justify-center mt-12`}>
