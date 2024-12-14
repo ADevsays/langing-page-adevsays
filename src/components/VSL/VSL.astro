@@ -125,7 +125,9 @@ const {videoId} = Astro.props;
 			params.append("playsinline", "1")
 			params.append("color", "white")
 			params.append("autoplay", "1")
-            params.append("loop", "1")
+            params.append("loop", "1");
+            params.append("rel", "0");
+            params.append("modestbranding", "1");
 			return params
 		}
 
