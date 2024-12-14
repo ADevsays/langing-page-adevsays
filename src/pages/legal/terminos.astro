@@ -1,0 +1,22 @@
+---
+import ContainerMain from '@components/UI/ContainerMain.astro';
+import Layout from '../../layouts/Layout.astro';
+import Terms from "../../sections/Legal/Terms.astro";
+
+export const prerender = false;
+
+---
+<Layout title="Whitelist proximamente..." description="¡Reserva un cupo para la news letter de Adevsays!">
+    <main class="w-full flex flex-wrap min-h-screen bg-gradient-to-b from-[#121212] via-[#121212] to-black">
+        <ContainerMain className="flex flex-col ">
+            <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-20 -z-10">
+                <div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 "></div>
+                <div class="blur-[106px] h-48 bg-gradient-to-r from-cyan-400 to-indigo-600"></div>
+            </div>
+            <h1 class="font-bold text-5xl">Adevsays Términos legales</h1>
+
+            <Terms/>
+        </ContainerMain>
+    </main>
+</Layout>
+
