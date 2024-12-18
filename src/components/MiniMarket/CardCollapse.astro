@@ -1,0 +1,23 @@
+---
+interface Props{
+    title:string, 
+    description:string, 
+    link?:string, 
+    img:string
+}
+const {title, description, link, img} = Astro.props;
+---
+
+<div class="card-collapse grid md:grid-cols-2 rounded-xl border-gray-800 border-2 bg-gradient-to-br from-black/90 to-black h-[50vh] md:h-[42vh] lg:h-[60vh] sticky w-full">
+    <div class="w-full text-left p-4 md:p-12">
+        <h4 class="font-semibold text-lg md:text-xl lg:text-2xl">{title}</h4>
+        <p class="md:text-lg lg:text-xl">{description}</p>
+        <button class="rounded-lg bg-white text-black font-bold p-2 px-4 mt-3 text-sm md:text-lg">¡Quiero este!</button>
+    </div>
+    <div class="w-full md:h-full lg:h-auto absolute md:static lg:static bottom-0 flex justify-center">
+        <img 
+            class="w-full md:h-full lg:h-auto object-contain"
+            src={`/resources/minmarket/devjourney/styles/${img}`} 
+            alt={`Plantilla de programación en Notion ${title}`}>
+    </div>
+</div>

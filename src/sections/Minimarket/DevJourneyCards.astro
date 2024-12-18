@@ -1,0 +1,63 @@
+---
+import CardCollapse from "@components/MiniMarket/CardCollapse.astro";
+---
+
+<section class="w-full mt-12 p-2 z-10 h-full">
+    <h3 class="text-left font-extrabold text-xl px-3">Escoge el estilo que se adapte a ti </h3>
+    <div id="cardContainer" class="mt-6 relative h-full">
+        <div class="flex gap-4 flex-col justify-center pb-16 ">
+
+            <CardCollapse
+                title="DevJoruney Technology"
+                description="Perfecto si eres un amante de linux"
+                img="technology.webp"
+            />
+
+            <CardCollapse
+                title="DevJoruney CyberAnime"
+                description="Estilo Cyberpunk para geeks"
+                img="cyberanime.webp"
+            />
+
+            <CardCollapse
+                title="DevJoruney Vintage"
+                description="Perfecto para los amantes de lo antigüo"
+                img="vintage.webp"
+            />
+
+            <CardCollapse
+                title="DevJoruney Minimalist"
+                description="Si no te gustan los efectos, también hay uno para ti"
+                img="minimalist.webp"
+            />
+        </div>
+        <div id="btnContainer" class="py-8 w-full flex justify-center relative top-[-50px]">
+            <button class="rounded-lg bg-red-600 text-white font-bold text-center p-2 px-6 text-sm md:text-base lg:text-xl">Sí quiero mejorar por $14.99</button>
+        </div>
+        <footer class="text-xs m-2 mt-10 lg:mt-0 text-center text-gray-600 lg:px-28 ">
+            © 2024 Adevsays. <br>
+            Descargo de Responsabilidad: Este producto no garantiza la obtención de resultados. Las referencias al desempeño de una determinada estrategia no debe ser interpretada como una garantía de resultados. Esta página no es parte de la página de Tiktok ni de Meta Inc.
+            Al utilizar nuestro servicio aceptas nuestros <a href="/legal/terminos" class="underline">términos y condiciones</a>
+        </footer>
+    </div>
+</section>
+
+<style is:global>
+.card-collapse:first-child{
+    bottom: 12vh;
+    z-index: 4;
+}
+.card-collapse:nth-child(2){
+    bottom: 10vh;
+    z-index: 3;
+}
+.card-collapse:nth-child(3){
+    bottom: 8vh;
+    z-index: 2;
+}
+.card-collapse:nth-child(4){
+    bottom: 6vh;
+    z-index: 1;
+}
+</style>
+ 

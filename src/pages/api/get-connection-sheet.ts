@@ -20,7 +20,7 @@ export const GET: APIRoute = async({request})=>{
         return new Response(JSON.stringify({error:"Something was wrong"}), {
             status: 400,
             headers: { 'Content-Type': 'application/json' },
-          });
+        });
     }
 
 }

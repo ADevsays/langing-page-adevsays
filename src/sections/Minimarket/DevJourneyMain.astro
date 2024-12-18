@@ -1,16 +1,98 @@
 ---
 import VSL from "@components/VSL/VSL.astro";
 ---
-
-<main class="rounded-xl bg-gray-950 p-6 lg:p-6 lg:py-12 w-full lg:w-[70%]">
-    <header class="text-center p-1 lg:p-3">
-        <h1 class="font-bold text-3xl lg:text-5xl">Organiza tus <span class="rounded-lg bg-yellow-400 text-black font-medium px-2">proyectos</span> y <span class="rounded-lg bg-white text-black font-medium px-2">estudios</span> en piloto automático</h1>
-        <p class="mt-4 lg:text-lg text-base italic">Crea un segundo <span class="underline decoration-yellow-600">cerebro</span> y céntrate en lo <span class="underline decoration-yellow-600">importante</span>.</p>            
-    </header>
-    <div class="p-5">
-        <!-- <VSL videoId="a7l8Jb7tJ3E"/> -->
-        <div class="bg-white rounded-xl h-[520px] text-black flex justify-center items-center">
-            <h3 class="text-2xl">Vídeo VSL de la plantilla</h3>
+<div id="main" class="fixed top-0 flex justify-center px-1 pt-4 lg:p-4 mb-4 transition-opacity">
+    <main class="rounded-xl bg-gray-950 p-6 pb-12 lg:p-6 lg:py-12 w-full lg:w-[70%]">
+        <header class="text-center p-1 lg:p-5">
+            <h1 class="font-bold text-2xl lg:text-5xl">Organiza tus <span class="rounded-lg bg-yellow-400 text-black font-medium px-2">proyectos</span> y <span class="rounded-lg bg-white text-black font-medium px-2">estudios</span> en piloto automático</h1>
+            <p class="mt-4 lg:text-lg text-base italic">Consigue un segundo <span class="text-red-500 font-bold">cerebro</span> y céntrate en lo <span class="underline decoration-yellow-600">importante</span>.</p>            
+        </header>
+        <div class="p-0 lg:px-12">
+            <VSL videoId="a7l8Jb7tJ3E"/>
         </div>
-    </div>
-</main>
+        <div class="w-full flex justify-center mt-9 ">
+            <button class="rounded-lg bg-yellow-400 text-black font-bold text-center p-2 px-6 text-sm md:text-xl">Quiero DevJourney por $14.99 ahora</button>
+        </div>
+    </main>
+</div>
+
+<style>
+    html{
+        scroll-behavior: smooth;
+    }
+</style>
+
+<script>
+import {$} from "../../utils/DOMUtils";
+
+interface OptinsScroll{scrollPosition:number, windowHeight:number, docHeight:number};
+
+const main = $("#main") as HTMLElement;
+
+const SCALING_FACTORS = { large: 0.021, small: 0.09 };
+const TOP_LIMITS = { min: 70, max: 300 };
+
+function calcTop(docHeight: number) {
+    const scalingFactor = docHeight > 2000 ? SCALING_FACTORS.large : SCALING_FACTORS.small;
+    const dynamicTop = Math.round(docHeight * scalingFactor);
+
+    return Math.min(Math.max(dynamicTop, TOP_LIMITS.min), TOP_LIMITS.max);
+}
+
+function setMainOpacity(opacity: number) {
+    main.style.opacity = `${Math.max(0, Math.min(1, opacity))}`;
+}
+
+function resetMainPosition() {
+    main.style.position = "static";
+    main.style.top = "0";
+}
+
+const movilBehavior = ({ scrollPosition, windowHeight, docHeight }: OptinsScroll) => {
+    if (scrollPosition + windowHeight >= docHeight / 4.5) {
+        const scrollOpacity = (scrollPosition + 400) / 1000;
+        setMainOpacity(1 - scrollOpacity);
+    } else if (scrollPosition < 62) {
+        setMainOpacity(1);
+    } 
+};
+
+const desktopBehavior = ({ scrollPosition, windowHeight, docHeight }: OptinsScroll) => {
+    const top = calcTop(docHeight);
+
+    const isPastFirstThreshold = scrollPosition + windowHeight >= docHeight / 8;
+    const isPastSecondThreshold = scrollPosition + windowHeight >= docHeight / 5;
+
+    if (isPastFirstThreshold) {
+        main.style.position = "fixed";
+        main.style.top = `-${top}px`;
+    }
+
+    if (isPastSecondThreshold) {
+        const scrollOpacity = (scrollPosition + 50) / 1000;
+        setMainOpacity(1 - scrollOpacity);
+    } else if (scrollPosition < 400) {
+        setMainOpacity(1);
+    }
+
+    if (scrollPosition < 120) {
+        resetMainPosition();
+    }
+};
+
+function init(){
+    window.addEventListener("scroll", () => {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const isDesktop = window.innerWidth >= 1024;
+        const options = {scrollPosition, windowHeight, docHeight};
+
+        if(isDesktop)desktopBehavior(options);
+        else movilBehavior(options);
+        
+    });
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>

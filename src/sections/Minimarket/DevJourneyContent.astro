@@ -1,7 +1,18 @@
-<section class="w-full text-center">
-    <h1 class="font-bold text-2xl mt-12">Construyendo la Landing de DevJourney en proceso, vuelva pronto...</h1>
-    <p>Creando precios y sistema de correos.</p>
-    <div>
-        <img src="" alt="">
+---
+import DevJourneyHero from "./DevJourneyHero.astro";
+import DevJourneyCards from "./DevJourneyCards.astro";
+---
+
+<div id="imgContainer" class="w-full text-center absolute h-auto md:h-1/2 top-[75vh] md:top-[80vh] lg:top-[140vh]">
+    <div class=" w-full flex justify-center h-[420px] md:h-auto aspect-video">
+        <img 
+            loading="lazy"
+            class="size-full object-cover object-top"
+            src="/resources/minmarket/devjourney/content_presentation.webp" alt="Presentación de DevJourney, plantilla de notion para programación.">
     </div>
-</section>
+    <div id="btnContainer" class="bg-gradient-to-br from-gray-950 to-gray-900  py-8 w-full flex justify-center relative top-[-50px]">
+        <button class="rounded-lg bg-red-600 text-white font-bold text-center p-2 px-6 text-sm md:text-base lg:text-xl">Empezar a usar mi segundo cerebro</button>
+    </div>
+    <DevJourneyHero/>
+    <DevJourneyCards/>
+</div>
