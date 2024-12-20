@@ -1,13 +1,20 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import { createPaypalButton } from "../../services/paypal/connectPaypal";
 import callSendEmail from "../../services/email/callApiSend";
+
+interface FormData{
+    name:string, 
+    email:string, 
+    confirmEmail:string
+};
 
 const checkoutOption = ref("paypal");
 const checkContainer = ref(null);
 const validateData = ref(false);
+const form = ref<null | HTMLFormElement>(null);
 
-const data = reactive({name:"", email: "", confirmEmail: ""});
+const data = reactive<FormData>({name:"", email: "", confirmEmail: ""});
 
 const validate = ()=>{
     const fullForm = Object.values(data).every(value => value.trim() !== "");
@@ -18,28 +25,29 @@ const validate = ()=>{
 
 const handleInput = (e:Event)=>{
     const input = e.target as HTMLInputElement;
-    data[input.name] = input.value;
+    const key = input.name as keyof FormData;
+    data[key] = input.value;
     validate();
 };
 
 const confirmPayment = async ()=>{
     await callSendEmail({email: data.confirmEmail, name:data.name});
     window.location.href = "/minimarket/devjourney/success";
-    
 };
 
 const changeCheck = (option:string)=>{
     checkoutOption.value = option;
-    if(!validateData.value) return;
     if(option === "paypal"){
         createPaypalButton(checkContainer.value, "14.99", confirmPayment);
     }
 };
 
+onMounted(()=> changeCheck("paypal"))
+
 </script>
 
 <template>
-    <form class="border-t mt-12">
+    <form @submit.prevent = "" ref="form"lass="border-t mt-12">
         <label class="w-full ">
             <small class="my-3 block">Tu nombre completo</small>
             <input 
@@ -76,12 +84,15 @@ const changeCheck = (option:string)=>{
         </button> -->
     </div>
 
-    <div ref="checkContainer" class="w-full py-6 mt-6">
+    <div ref="checkContainer" class="w-full py-6 mt-6 relative">
+        <div 
+            @click="form?.requestSubmit()"
+            v-if="!validateData" 
+            class="size-full absolute inset-0 z-[999]"></div>
         <p class="text-lg text-gray-400">Detalles de la compra</p>
         <div class="flex justify-between items-center mb-6">
             <p class="font-bold">Devjourney por Adevsays</p>
             <span class="text-gray-400">US $14.99</span>
         </div>
-        <p class="italic font-medium" v-show="!validateData">Por favor, rellena los datos y confirma tu email</p>
     </div>
 </template>
