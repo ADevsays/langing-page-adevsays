@@ -5,7 +5,8 @@ export const GET: APIRoute = async()=>{
     return new Response(null, {
         status: 302, 
         headers:{
-            Location: targetUrl
+            Location: targetUrl,
+            "Content-Type": "text/html; charset=utf-8", 
         }
     })
 }
