@@ -1,0 +1,17 @@
+---
+import SelectPayment from "@components/MiniMarket/SelectPayment.vue";
+---
+
+<section class="w-full">
+    <div class="flex items-start gap-8">
+        <img class="max-w-[140px] min-h-[170px] border-red-400  object-cover rounded-lg" src="/resources/minmarket/devjourney/content_presentation.webp" alt="imagen de referencia del producto devjourney, una plantilla por adevsays">
+        <div>
+            <h3 class="font-bold text-xl">Devjourney - Tu segundo cerebro</h3>
+            <p>Por: Adevsays</p>
+            <h4 class="font-bold text-lg text-blue-700">US$ 14.99</h4>
+            <small>Devjourney</small>
+            <h4>Ingresa tus datos para recibir el producto</h4>
+        </div>
+    </div>
+    <SelectPayment client:load/>
+</section>

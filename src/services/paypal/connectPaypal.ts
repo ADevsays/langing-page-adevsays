@@ -19,8 +19,8 @@ const formatAmountValue = (amount:string)=> Number(amount).toFixed(2);
 
 const API = import.meta.env.PUBLIC_PAYPAL_CLIENT_ID;
 
-export async function createPaypalButton(container: HTMLElement | null, price:string){
-    console.log(price)
+export async function createPaypalButton(container: HTMLElement | null, price:string, acceptCb?: ()=>void){
+    
     try {
         await loadScript({ clientId: `${API}&locale=es_ES` });
         if (paypalButtonInstance) {
@@ -29,7 +29,7 @@ export async function createPaypalButton(container: HTMLElement | null, price:st
         if(!window.paypal?.Buttons) return;
 
         paypalButtonInstance = window?.paypal?.Buttons({
-            fundingSource: window.paypal.FUNDING?.CARD,
+            // fundingSource: window.paypal.FUNDING?.CARD,
             createOrder: (_, actions)=>{
                 return actions.order.create({
                     intent: "CAPTURE",
@@ -46,7 +46,7 @@ export async function createPaypalButton(container: HTMLElement | null, price:st
             },
             onApprove: async (_, {order})=> {
                 if({order}){
-                    return order?.capture().then(actionsOfSuccessfullPayment);
+                    return order?.capture().then(acceptCb === undefined ? actionsOfSuccessfullPayment : acceptCb);
                 }
             }
         });

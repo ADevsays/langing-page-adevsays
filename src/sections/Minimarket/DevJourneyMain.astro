@@ -8,10 +8,10 @@ import VSL from "@components/VSL/VSL.astro";
             <p class="mt-4 lg:text-lg text-base italic">Consigue un segundo <span class="text-red-500 font-bold">cerebro</span> y céntrate en lo <span class="underline decoration-yellow-600">importante</span>.</p>            
         </header>
         <div class="p-0 lg:px-12">
-            <VSL videoId="a7l8Jb7tJ3E"/>
+            <VSL videoId="rJZ2CJ95rRM"/>
         </div>
         <div class="w-full flex justify-center mt-9 ">
-            <button class="rounded-lg bg-yellow-400 text-black font-bold text-center p-2 px-6 text-sm md:text-xl">Quiero DevJourney por $14.99 ahora</button>
+            <a href="/minimarket/devjourney/checkout" class="rounded-lg bg-yellow-400 text-black font-bold text-center p-2 px-6 text-sm md:text-xl">Quiero DevJourney por $14.99 ahora</a>
         </div>
     </main>
 </div>
@@ -24,6 +24,7 @@ import VSL from "@components/VSL/VSL.astro";
 
 <script>
 import {$} from "../../utils/DOMUtils";
+
 
 interface OptinsScroll{scrollPosition:number, windowHeight:number, docHeight:number};
 
@@ -67,7 +68,7 @@ const desktopBehavior = ({ scrollPosition, windowHeight, docHeight }: OptinsScro
         main.style.position = "fixed";
         main.style.top = `-${top}px`;
     }
-
+// SLHN771YNKL26WTGR9NST6AP
     if (isPastSecondThreshold) {
         const scrollOpacity = (scrollPosition + 50) / 1000;
         setMainOpacity(1 - scrollOpacity);
