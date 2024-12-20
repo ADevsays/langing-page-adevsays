@@ -24,6 +24,8 @@ const handleInput = (e:Event)=>{
 
 const confirmPayment = async ()=>{
     await callSendEmail({email: data.confirmEmail, name:data.name});
+    window.location.href = "/minimarket/devjourney/success";
+    
 };
 
 const changeCheck = (option:string)=>{
@@ -65,13 +67,13 @@ const changeCheck = (option:string)=>{
         <button 
             @click="changeCheck('paypal')"
             class="min-h-[80px] flex  items-center justify-center flex-1 text-gray-400 rounded-lg bg-white border-gray-400 w-full border text-left">
-            <img class="max-w-[110px]" src="https://logowik.com/content/uploads/images/paypal-black8790.jpg" alt="paypal black and white icon">
+            <img class="max-w-[310px]" src="/resources/minmarket/devjourney/titles/paypal.webp" alt="paypal black and white icon">
         </button>
-        <button 
+        <!-- <button 
             @click="changeCheck('cryptomus')"
             class="min-h-[80px] flex  items-center justify-center flex-1 text-gray-400 rounded-lg bg-white border-gray-400 w-full border text-left">
             <img class="max-w-[110px]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBigXc_dqg4IFFfNmgL3oi3-MRZiCs2bd9Kg&s" alt="paypal black and white icon">
-        </button>
+        </button> -->
     </div>
 
     <div ref="checkContainer" class="w-full py-6 mt-6">

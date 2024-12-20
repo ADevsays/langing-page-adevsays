@@ -1,5 +1,6 @@
 ---
 import CardCollapse from "@components/MiniMarket/CardCollapse.astro";
+import DevJournyeTelegram from "./DevJournyeTelegram.astro";
 ---
 
 <section class="w-full mt-12 p-2 z-10 h-full">
@@ -31,9 +32,11 @@ import CardCollapse from "@components/MiniMarket/CardCollapse.astro";
                 img="minimalist.webp"
             />
         </div>
-        <div id="btnContainer" class="py-8 w-full flex justify-center relative top-[-50px]">
-            <button class="rounded-lg bg-red-600 text-white font-bold text-center p-2 px-6 text-sm md:text-base lg:text-xl">Sí quiero mejorar por $14.99</button>
+        <div id="btnContainer" class="py-8 pb-1 w-full flex justify-center relative top-[-50px]">
+            <a href="/minimarket/devjourney/checkout" class="rounded-lg bg-red-600 text-white font-bold text-center p-2 px-6 text-sm md:text-base lg:text-xl">Sí quiero mejorar por $14.99</a>
         </div>
+        <DevJournyeTelegram/>
+
         <footer class="text-xs m-2 mt-10 lg:mt-0 text-center text-gray-600 lg:px-28 ">
             © 2024 Adevsays. <br>
             Descargo de Responsabilidad: Este producto no garantiza la obtención de resultados. Las referencias al desempeño de una determinada estrategia no debe ser interpretada como una garantía de resultados. Esta página no es parte de la página de Tiktok ni de Meta Inc.
