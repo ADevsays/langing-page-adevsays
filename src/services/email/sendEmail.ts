@@ -34,4 +34,6 @@ export async function sendEmail(email:string, name:string){
         }
         console.log("Correo enviado:", info.response);
     });
+
+    return mailOptions;
 }

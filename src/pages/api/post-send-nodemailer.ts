@@ -6,8 +6,8 @@ export const POST: APIRoute = async ({request})=>{
     console.log("call")
     try {
         const {email, name} = await new Response(request.body).json();
-        await sendEmail(email, name);
-        return new Response(JSON.stringify({success: `The email ${email} was be send`}),{
+        const options = await sendEmail(email, name);
+        return new Response(JSON.stringify({success: `The email ${email} was be send`, options}),{
             status: 200,
             headers: { 'Content-Type': 'application/json' },
         });
