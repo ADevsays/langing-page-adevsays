@@ -25,6 +25,8 @@ export async function sendEmail(email:string, name:string){
         subject: "Compra de DevJourney",
         html,
     };
+
+    console.log(mailOptions, process.env.BREVO_HOST)
       
     await transporter.sendMail(mailOptions, (error:Error, info:{response:string}) => {
         if (error) {
