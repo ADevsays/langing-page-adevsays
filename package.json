@@ -17,6 +17,7 @@
     "@astrojs/vue": "^4.2.0",
     "@fingerprintjs/fingerprintjs": "^4.2.2",
     "@fontsource-variable/onest": "^5.0.2",
+    "@getbrevo/brevo": "^2.2.0",
     "@midudev/tailwind-animations": "^0.0.7",
     "@paypal/paypal-js": "^8.0.2",
     "@sendgrid/mail": "^8.1.1",
