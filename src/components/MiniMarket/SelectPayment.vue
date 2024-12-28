@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted } from "vue";
-import { createPaypalButton } from "../../services/paypal/connectPaypal";
+import { closePaypalButton, createPaypalButton } from "../../services/paypal/connectPaypal";
 import callSendEmail from "../../services/email/callApiSend";
+import cryptoPayment from "../../services/cryptomus/payment";
 
 interface FormData{
     name:string, 
@@ -13,6 +14,7 @@ const checkoutOption = ref("paypal");
 const checkContainer = ref(null);
 const validateData = ref(false);
 const form = ref<null | HTMLFormElement>(null);
+const cryptoUrl = ref("");
 
 const data = reactive<FormData>({name:"", email: "", confirmEmail: ""});
 
@@ -35,10 +37,20 @@ const confirmPayment = async ()=>{
     window.location.href = "/minimarket/devjourney/success";
 };
 
+const getCryptomusData = async ()=>{
+    if(!cryptoUrl.value){
+        const {result} = await cryptoPayment({email: data.confirmEmail, name:data.name});
+        cryptoUrl.value = result.url;
+    }
+}
+
 const changeCheck = (option:string)=>{
     checkoutOption.value = option;
     if(option === "paypal"){
         createPaypalButton(checkContainer.value, "14.99", confirmPayment);
+    }else{
+        getCryptomusData();
+        closePaypalButton();
     }
 };
 
@@ -52,6 +64,7 @@ onMounted(()=> changeCheck("paypal"))
             <small class="my-3 block">Tu nombre completo</small>
             <input 
                 @input="handleInput"
+                :value="data.name"
                 name="name"
                 class="block w-full rounded-lg p-3 bg-white border border-gray-400" type="text" required placeholder="introduce tu nombre completo">
         </label>
@@ -59,6 +72,7 @@ onMounted(()=> changeCheck("paypal"))
             <small class="my-3 block">Tu email</small>
             <input 
                 @input="handleInput"
+                :value="data.email"
                 name="email"
                 class="block w-full rounded-lg p-3 bg-white border border-gray-400" type="email" required placeholder="introduce tu email">
         </label>
@@ -66,6 +80,7 @@ onMounted(()=> changeCheck("paypal"))
             <small class="my-3 block">Confirma tu email</small>
             <input 
                 @input="handleInput"
+                :value="data.confirmEmail"
                 name="confirmEmail"
                 class="block w-full rounded-lg p-3 bg-white border border-gray-400" type="email" required placeholder="confirma tu email">
         </label>
@@ -77,11 +92,11 @@ onMounted(()=> changeCheck("paypal"))
             class="min-h-[80px] flex  items-center justify-center flex-1 text-gray-400 rounded-lg bg-white border-gray-400 w-full border text-left">
             <img class="max-w-[310px]" src="/resources/minmarket/devjourney/titles/paypal.webp" alt="paypal black and white icon">
         </button>
-        <!-- <button 
+        <button 
             @click="changeCheck('cryptomus')"
             class="min-h-[80px] flex  items-center justify-center flex-1 text-gray-400 rounded-lg bg-white border-gray-400 w-full border text-left">
             <img class="max-w-[110px]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBigXc_dqg4IFFfNmgL3oi3-MRZiCs2bd9Kg&s" alt="paypal black and white icon">
-        </button> -->
+        </button>
     </div>
 
     <div ref="checkContainer" class="w-full py-6 mt-6 relative">
@@ -94,5 +109,14 @@ onMounted(()=> changeCheck("paypal"))
             <p class="font-bold">Devjourney por Adevsays</p>
             <span class="text-gray-400">US $14.99</span>
         </div>
+        <a 
+            :href="cryptoUrl"
+            v-if="checkoutOption === 'cryptomus'"
+            class="w-full flex justify-center items-center bg-black rounded-lg">
+            <img 
+                class="w-full max-h-[75px] object-contain"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVi_DDknBgYOxYdx-zvLgui7ylM2Wj4oBrbA&s"
+            >
+        </a>
     </div>
 </template>
